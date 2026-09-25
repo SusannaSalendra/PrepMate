@@ -1,0 +1,16 @@
+{
+  "name": "prepmate-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PrepMate - AI-Powered Job Interview Preparation Platform",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "node -e \"const { spawn } = require('child_process'); const isWin = process.platform === 'win32'; const cmd = isWin ? 'npm.cmd' : 'npm'; const s = spawn(cmd, ['run', 'dev', '--prefix', 'server'], { stdio: 'inherit' }); const c = spawn(cmd, ['run', 'dev', '--prefix', 'client'], { stdio: 'inherit' }); process.on('SIGINT', () => { s.kill(); c.kill(); process.exit(); });\"",
+    "seed": "npm run seed --prefix server",
+    "build": "npm run build --prefix client"
+  },
+  "keywords": ["mern", "interview-prep", "ai"],
+  "author": "PrepMate",
+  "license": "ISC"
+}

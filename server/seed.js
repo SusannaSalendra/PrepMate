@@ -30,21 +30,18 @@ const seedData = async () => {
 
     console.log('🧹 Cleared existing database records.');
 
-    // 1. Create Default Users
-    const adminPassword = await bcrypt.hash('admin123', 10);
-    const userPassword = await bcrypt.hash('user123', 10);
-
+    // 1. Create Default Users (User model pre-save hook handles hashing)
     const adminUser = await User.create({
       name: 'PrepMate Admin',
       email: 'admin@prepmate.com',
-      password: adminPassword,
+      password: 'admin123',
       role: 'admin',
     });
 
     const demoUser = await User.create({
       name: 'Alex Johnson',
       email: 'alex@example.com',
-      password: userPassword,
+      password: 'user123',
       role: 'user',
     });
 

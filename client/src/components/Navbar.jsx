@@ -16,6 +16,7 @@ import {
   Sparkles,
   Bot,
   Mic,
+  ArrowRight,
 } from 'lucide-react';
 
 export const Navbar = () => {

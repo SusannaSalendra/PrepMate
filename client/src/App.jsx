@@ -21,6 +21,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import AdminQuestions from './pages/AdminQuestions';
 import AdminCategories from './pages/AdminCategories';
+import AiMentor from './pages/AiMentor';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/questions" element={<QuestionBank />} />
               <Route path="/questions/:id" element={<QuestionDetail />} />
+              <Route path="/ai-mentor" element={<AiMentor />} />
 
               {/* Protected User Routes */}
               <Route

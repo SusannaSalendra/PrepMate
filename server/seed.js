@@ -84,7 +84,9 @@ const seedData = async () => {
 
     // 3. Create Curated Interview Questions
     const questionsData = [
-      // DSA
+      // ==========================================
+      // DATA STRUCTURES & ALGORITHMS
+      // ==========================================
       {
         title: 'Two Sum Problem with Optimal O(n) Hash Map Solution',
         description: `### Problem
@@ -192,8 +194,92 @@ Combine a **Doubly Linked List** and a **Hash Map**:
         tags: ['Design', 'Hash Map', 'Doubly Linked List'],
         createdBy: adminUser._id,
       },
+      {
+        title: 'Course Schedule & Detecting Cycles in Directed Graphs',
+        description: `### Problem
+There are \`numCourses\` courses labeled \`0\` to \`numCourses - 1\`. You are given \`prerequisites[i] = [a, b]\` indicating you must take \`b\` before \`a\`. Determine if you can finish all courses.
 
-      // System Design
+### Approach: Topological Sort (Kahn's Algorithm / BFS)
+1. Build adjacency list and compute in-degree for every vertex.
+2. Push all vertices with \`inDegree === 0\` into a queue.
+3. While queue is not empty:
+   - Pop vertex, increment \`visitedCount\`.
+   - For each neighbor, decrement in-degree. If in-degree reaches 0, push into queue.
+4. If \`visitedCount === numCourses\`, topological ordering exists (no cycle).
+
+### Complexity
+- **Time Complexity:** O(V + E)
+- **Space Complexity:** O(V + E)`,
+        category: catMap['Data Structures & Algorithms'],
+        difficulty: 'Medium',
+        company: 'Amazon',
+        tags: ['Graph', 'Topological Sort', 'BFS', 'DFS'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Binary Tree Maximum Path Sum',
+        description: `### Problem
+A path in a binary tree is a sequence of nodes where each pair of adjacent nodes has an edge. Find the maximum path sum of any non-empty path.
+
+### Recursive Post-Order DFS Strategy
+1. For any node, compute the max contribution from its left and right subtrees: \`leftMax = max(0, maxGain(node.left))\`, \`rightMax = max(0, maxGain(node.right))\`.
+2. The path through the current node with root at current is \`node.val + leftMax + rightMax\`. Update global \`maxSum = max(maxSum, priceNewPath)\`.
+3. Return \`node.val + max(leftMax, rightMax)\` to the parent caller (since a path cannot branch into both subtrees when extending upward).
+
+### Complexity
+- **Time Complexity:** O(N) visiting each node once.
+- **Space Complexity:** O(H) where H is tree height for call stack recursion.`,
+        category: catMap['Data Structures & Algorithms'],
+        difficulty: 'Hard',
+        company: 'Meta',
+        tags: ['Binary Tree', 'DFS', 'Recursion', 'Dynamic Programming'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Coin Change: Minimum Coins to Make Amount',
+        description: `### Problem
+Given an integer array \`coins\` and integer \`amount\`, compute the fewest number of coins needed to make up that amount.
+
+### Dynamic Programming (Bottom-Up)
+1. Create DP array \`dp\` of size \`amount + 1\` filled with \`Infinity\`, set \`dp[0] = 0\`.
+2. Iterate for \`i = 1\` to \`amount\`:
+   - For each coin in \`coins\`:
+     - If \`i - coin >= 0\`: \`dp[i] = min(dp[i], dp[i - coin] + 1)\`.
+3. Return \`dp[amount] === Infinity ? -1 : dp[amount]\`.
+
+### Complexity
+- **Time Complexity:** O(amount * len(coins))
+- **Space Complexity:** O(amount)`,
+        category: catMap['Data Structures & Algorithms'],
+        difficulty: 'Medium',
+        company: 'Microsoft',
+        tags: ['Dynamic Programming', 'Array', 'Greedy Fallacy'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Word Search II with Trie and Backtracking',
+        description: `### Problem
+Given an \`m x n\` board of characters and a list of strings \`words\`, return all words present on the board.
+
+### Optimal Approach
+1. Insert all dictionary words into a **Prefix Tree (Trie)**.
+2. Run DFS Backtracking from every cell on the board.
+3. At each cell, step into corresponding Trie node. If the node marks a completed word, add word to results and clear flag to avoid duplicates.
+4. Prune leaf Trie branches dynamically during search for extreme speedups.
+
+### Complexity
+- **Time Complexity:** O(M * N * 4^(L)) where L is maximum word length.
+- **Space Complexity:** O(total characters in words) for Trie.`,
+        category: catMap['Data Structures & Algorithms'],
+        difficulty: 'Hard',
+        company: 'Google',
+        tags: ['Trie', 'Backtracking', 'Matrix', 'DFS'],
+        createdBy: adminUser._id,
+      },
+
+      // ==========================================
+      // SYSTEM DESIGN
+      // ==========================================
       {
         title: 'Design a Scalable URL Shortener (Bitly / TinyURL)',
         description: `### Requirements
@@ -243,8 +329,58 @@ Combine a **Doubly Linked List** and a **Hash Map**:
         tags: ['Redis', 'Rate Limiting', 'Concurrency', 'Lua'],
         createdBy: adminUser._id,
       },
+      {
+        title: 'Design a Scalable Distributed In-Memory Cache (Redis Cluster)',
+        description: `### Core Architecture Requirements
+- Sub-millisecond latency for get/set operations.
+- High availability with automated leader election and replication.
+- Dynamic horizontal scaling without full dataset rebalancing.
 
-      // Frontend Engineering
+### Key Building Blocks:
+1. **Consistent Hashing & Virtual Nodes:** Hash keys to 16,384 slots across multiple master nodes. Virtual nodes prevent hot spot data imbalance.
+2. **Eviction Policies:** LRU (Least Recently Used), LFU (Least Frequently Used), and TTL-based expiration with active/passive sweeps.
+3. **Cache Invalidation Patterns:**
+   - *Cache-Aside (Lazy Loading)*: App reads cache, misses, reads DB, writes to cache.
+   - *Write-Through / Write-Behind*: App writes cache, cache syncs DB synchronously or asynchronously.
+4. **Cache Thundering Herd / Dog-piling Mitigation:** Distributed mutex locks (Redis Redlock) or probabilistic early expiration.`,
+        category: catMap['System Design'],
+        difficulty: 'Hard',
+        company: 'Meta',
+        tags: ['Consistent Hashing', 'Caching', 'Redis', 'High Availability'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Design YouTube / Netflix Video Streaming Platform',
+        description: `### High-Level Architecture
+1. **Upload & Ingestion Pipeline:** Direct presigned S3/GCS multipart upload to object storage.
+2. **Transcoding & Encoding Cluster:** Asynchronous worker queue (Kafka + FFmpeg worker pool) converting original video into multiple resolutions (1080p, 720p, 480p) and chunking into MPEG-DASH / HLS segments (.ts / .m4s).
+3. **Content Delivery Network (CDN):** Geo-distributed edge caches caching popular video segments close to users.
+4. **Metadata & Search Service:** Elasticsearch/OpenSearch for video discovery, PostgreSQL for user accounts and video metadata.
+5. **Adaptive Bitrate Streaming (ABR):** Client player dynamically adjusts video resolution chunk-by-chunk based on real-time bandwidth.`,
+        category: catMap['System Design'],
+        difficulty: 'Hard',
+        company: 'Google',
+        tags: ['Video Streaming', 'HLS', 'CDN', 'Transcoding', 'Distributed Storage'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Design WhatsApp / Messenger Real-Time Chat Architecture',
+        description: `### System Components
+1. **Connection Gateway:** Stateful WebSocket/TCP servers maintaining persistent duplex connections with millions of online clients.
+2. **Session & Presence Service:** Redis cluster mapping \`userId -> gatewayServerId\` and heartbeat tracking for online/offline/typing status.
+3. **Message Queuing & Routing:** Distributed message broker (Kafka/RabbitMQ) routing messages to the recipient's connected gateway server.
+4. **Offline Message Storage:** Cassandra/HBase for append-only fast writes with TTL until user device reconnects and acks receipt.
+5. **End-to-End Encryption:** Signal Protocol using Double Ratchet algorithm for military-grade message security.`,
+        category: catMap['System Design'],
+        difficulty: 'Medium',
+        company: 'Meta',
+        tags: ['WebSockets', 'Chat', 'End-to-End Encryption', 'Presence System'],
+        createdBy: adminUser._id,
+      },
+
+      // ==========================================
+      // FRONTEND ENGINEERING
+      // ==========================================
       {
         title: 'React Fiber Architecture and Concurrent Mode Explained',
         description: `### What is React Fiber?
@@ -296,8 +432,47 @@ Instead of attaching individual event listeners to hundreds of child elements (e
         tags: ['Performance', 'Core Web Vitals', 'LCP', 'INP'],
         createdBy: adminUser._id,
       },
+      {
+        title: 'Virtual DOM vs Real DOM and React Re-rendering Optimization',
+        description: `### Virtual DOM Mechanism
+1. The Virtual DOM is an in-memory lightweight representation of the real DOM tree.
+2. When state changes, React constructs a new Virtual DOM tree and diffs it with previous tree (**Diffing Algorithm** O(n) heuristic).
+3. Batches calculations and applies minimal real DOM mutations.
 
-      // Backend & Databases
+### React Re-render Optimization Strategies:
+- **Component Memoization:** \`React.memo\` prevents re-renders when props have shallow equality.
+- **Hook Optimization:** \`useMemo\` for expensive computations, \`useCallback\` to preserve function references.
+- **State Colocation:** Keep state as close as possible to the child components that consume it.
+- **Virtualization:** Render only visible viewport rows with libraries like TanStack Virtual / react-window for lists of 10,000+ items.`,
+        category: catMap['Frontend Engineering'],
+        difficulty: 'Medium',
+        company: 'Netflix',
+        tags: ['React', 'Virtual DOM', 'useMemo', 'Virtualization'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Web Workers, Service Workers & Offline PWA Architecture',
+        description: `### Differences Between Web Workers & Service Workers
+- **Web Workers:** Run CPU-heavy scripts (image processing, data crunching, sorting) in a background thread to prevent UI freezing on the main thread.
+- **Service Workers:** Act as programmable proxy servers between the browser, web app, and network. Intercept HTTP requests, enable offline caching (Cache Storage API), background sync, and push notifications.
+
+### Service Worker Lifecycle:
+1. \`Registration\` -> 2. \`Installation\` (pre-cache static assets) -> 3. \`Activation\` (cleanup stale caches) -> 4. \`Fetch / Idle\`.
+
+### Common Caching Strategies:
+- *Cache First / Cache Falling Back to Network*: Ideal for fonts, static hashed bundles, logos.
+- *Network First / Network Falling Back to Cache*: Ideal for dynamic API feeds and user profiles.
+- *Stale-While-Revalidate*: Instantly returns cached version while refreshing cache in background.`,
+        category: catMap['Frontend Engineering'],
+        difficulty: 'Hard',
+        company: 'Uber',
+        tags: ['Service Worker', 'Web Worker', 'PWA', 'Offline Caching'],
+        createdBy: adminUser._id,
+      },
+
+      // ==========================================
+      // BACKEND & DATABASES
+      // ==========================================
       {
         title: 'SQL vs NoSQL: When to choose Relational vs Document/Key-Value Databases',
         description: `### Relational Databases (PostgreSQL, MySQL)
@@ -346,8 +521,45 @@ While Node.js uses a single-threaded Event Loop, multiple asynchronous requests 
         tags: ['Concurrency', 'Distributed Locks', 'Redis', 'Transactions'],
         createdBy: adminUser._id,
       },
+      {
+        title: 'Microservices Saga Pattern vs Two-Phase Commit (2PC)',
+        description: `### Distributed Transaction Problem
+In a microservices architecture, a single business transaction (e.g., placing an order) spans multiple independent database services (Order DB, Payment DB, Inventory DB).
 
-      // Behavioral & Leadership
+### Two-Phase Commit (2PC):
+- Heavy synchronous coordinator with \`Prepare\` and \`Commit\` phases.
+- Vulnerable to coordinator single point of failure and severe blocking latency under high load.
+
+### Saga Pattern (Event-Driven & Resilient):
+- A sequence of local transactions where each step publishes an event upon success.
+- **Compensating Transactions:** If step 3 (Inventory reservation) fails, backward compensating events are emitted to undo step 2 (Refund payment) and step 1 (Cancel order).
+- **Execution Models:** Choreography (decentralized events) vs Orchestration (central Saga orchestrator managing state machine).`,
+        category: catMap['Backend & Databases'],
+        difficulty: 'Hard',
+        company: 'Netflix',
+        tags: ['Microservices', 'Saga Pattern', 'Distributed Systems', 'Transactions'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'JWT Authentication vs Stateful Sessions & Refresh Token Rotation',
+        description: `### Comparison
+- **Stateful Sessions:** Server stores session ID in Redis/DB and sets \`httpOnly\` cookie on client. Easy to revoke instantly, but requires centralized session store.
+- **JWT (Stateless):** Signed cryptographic token containing claims. Decoded without DB lookup, highly scalable across microservices, but difficult to invalidate before expiry.
+
+### Secure Modern Auth Pattern:
+1. **Short-lived Access Token (15 mins):** Kept in memory or secure context.
+2. **Long-lived Refresh Token (7 days):** Stored in secure, \`httpOnly\`, \`SameSite=Strict\` cookie.
+3. **Refresh Token Rotation (RTR):** Every time the refresh token is used, server issues a new pair and invalidates the old one. If an old token is reused, server revokes all tokens for that user immediately to stop session hijacking.`,
+        category: catMap['Backend & Databases'],
+        difficulty: 'Medium',
+        company: 'Stripe',
+        tags: ['Security', 'JWT', 'OAuth', 'Authentication'],
+        createdBy: adminUser._id,
+      },
+
+      // ==========================================
+      // BEHAVIORAL & LEADERSHIP
+      // ==========================================
       {
         title: 'Tell me about a time you resolved a major production outage or technical disagreement',
         description: `### Structure Using the STAR Method
@@ -377,6 +589,51 @@ While Node.js uses a single-threaded Event Loop, multiple asynchronous requests 
         difficulty: 'Easy',
         company: 'Google',
         tags: ['Project Management', 'Communication', 'Prioritization'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Describe a situation where you strongly disagreed with an engineering decision made by a lead or peer',
+        description: `### Key Competencies Evaluated: Amazon "Have Backbone; Disagree and Commit" & Emotional Intelligence
+- **Situation:** Detail a concrete technical debate (e.g., choosing between MongoDB document sharding vs PostgreSQL partitioning).
+- **Action:**
+  - Gather objective empirical data: ran benchmark load-tests simulating peak 50,000 requests/sec.
+  - Presented findings calmly focusing on user latency and maintenance overhead without personal bias.
+  - Actively listened to the opposing view regarding schema flexibility for upcoming features.
+- **Result:**
+  - Team adopted the hybrid solution. Once the decision was finalized, gave 100% commitment to execution.`,
+        category: catMap['Behavioral & Leadership'],
+        difficulty: 'Medium',
+        company: 'Amazon',
+        tags: ['Conflict Resolution', 'Disagree and Commit', 'STAR Method'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'Tell me about a time you mentored a junior engineer or championed engineering quality',
+        description: `### Core Leadership Themes:
+- **Situation:** Junior engineer was struggling with code reviews and asynchronous error handling patterns.
+- **Action:**
+  - Conducted weekly 1-on-1 pair-programming sessions.
+  - Created team guidelines and ESLint rules for async error boundaries.
+  - Encouraged ownership by delegating a modular telemetry sub-feature to build their confidence.
+- **Result:**
+  - The engineer completed the feature ahead of schedule with zero production regressions and was later promoted.`,
+        category: catMap['Behavioral & Leadership'],
+        difficulty: 'Easy',
+        company: 'Apple',
+        tags: ['Mentorship', 'Engineering Culture', 'Leadership'],
+        createdBy: adminUser._id,
+      },
+      {
+        title: 'How do you handle ambiguous requirements when tasked with building a 0-to-1 product?',
+        description: `### Structured Approach:
+1. **Identify Core User Value Proposition:** What is the singular job-to-be-done for the end user?
+2. **Draft Technical RFC (Request for Comments):** Outline system boundaries, API contracts, dependencies, and risk factors.
+3. **Establish Rapid Feedback Loops:** Deliver iterative clickable prototypes or alpha API endpoints within 2 weeks.
+4. **Instrument Metrics Early:** Add telemetry to measure actual user adoption and error frequencies before scaling.`,
+        category: catMap['Behavioral & Leadership'],
+        difficulty: 'Hard',
+        company: 'Stripe',
+        tags: ['Product Sense', 'Ambiguity', 'System Architecture', 'Communication'],
         createdBy: adminUser._id,
       },
     ];

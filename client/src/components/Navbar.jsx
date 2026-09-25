@@ -14,6 +14,8 @@ import {
   Menu,
   X,
   Sparkles,
+  Bot,
+  Mic,
 } from 'lucide-react';
 
 export const Navbar = () => {
@@ -72,6 +74,23 @@ export const Navbar = () => {
             <NavLink to="/mock-interview" className={navLinkStyle}>
               <PlayCircle className="w-4 h-4 text-emerald-400" />
               <span>Mock Interview</span>
+            </NavLink>
+
+            <NavLink
+              to="/ai-mentor"
+              className={({ isActive }) =>
+                `flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? 'bg-gradient-to-r from-indigo-600/30 to-purple-600/30 text-indigo-300 border border-indigo-500/40 shadow-md shadow-indigo-500/10'
+                    : 'text-indigo-300 hover:text-white hover:bg-indigo-950/40 border border-indigo-500/20'
+                }`
+              }
+            >
+              <Bot className="w-4 h-4 text-purple-400 animate-pulse" />
+              <span>AI Voice Mentor</span>
+              <span className="px-1.5 py-0.2 rounded-md text-[9px] font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-sm">
+                VOICE
+              </span>
             </NavLink>
 
             {isAuthenticated && (
@@ -224,6 +243,24 @@ export const Navbar = () => {
           >
             <PlayCircle className="w-5 h-5 text-emerald-400" />
             <span>Mock Interview</span>
+          </NavLink>
+
+          <NavLink
+            to="/ai-mentor"
+            onClick={() => setMobileMenuOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold transition-all ${
+                isActive
+                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
+                  : 'text-indigo-300 hover:text-white hover:bg-slate-800 border border-indigo-500/20'
+              }`
+            }
+          >
+            <Bot className="w-5 h-5 text-purple-400" />
+            <span>AI Voice Mentor</span>
+            <span className="ml-auto px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+              VOICE AI
+            </span>
           </NavLink>
 
           {isAuthenticated ? (

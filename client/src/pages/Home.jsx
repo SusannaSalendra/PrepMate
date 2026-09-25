@@ -13,13 +13,15 @@ import {
   Terminal,
   ShieldCheck,
   Zap,
+  Bot,
+  Mic,
 } from 'lucide-react';
 import api from '../api/axios';
 
 export const Home = () => {
   const [categories, setCategories] = useState([]);
   const [stats, setStats] = useState({
-    totalQuestions: 15,
+    totalQuestions: 25,
     categoriesCount: 5,
   });
 
@@ -49,9 +51,9 @@ export const Home = () => {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 text-center">
         {/* Release / Feature Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-          <span>The Next-Generation Tech Interview Simulator</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
+          <Bot className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
+          <span>New: Real-time Voice AI Mentor & Virtual Interview Simulator</span>
         </div>
 
         {/* Main Title */}
@@ -63,25 +65,33 @@ export const Home = () => {
         </h1>
 
         <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Level up your confidence with curated questions from top tech companies, timed mock interview sessions, self-evaluation scoring, and personalized skill analytics.
+          Level up your confidence with an interactive Voice AI Mentor, simulated virtual interviews, curated problems from top tech giants, and personalized skill analytics.
         </p>
 
         {/* CTA Button Group */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto mb-16">
+          <Link
+            to="/ai-mentor"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-extrabold text-sm shadow-xl shadow-purple-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all"
+          >
+            <Mic className="w-4 h-4 text-pink-200 animate-pulse" />
+            <span>Try AI Voice Mentor</span>
+          </Link>
+
           <Link
             to="/mock-interview"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white font-bold text-sm shadow-xl shadow-indigo-500/30 hover:scale-[1.02] hover:shadow-indigo-500/40 active:scale-[0.98] transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-white border border-indigo-500/30 font-bold text-sm shadow-lg transition-all"
           >
-            <PlayCircle className="w-5 h-5 text-emerald-300" />
-            <span>Start Mock Interview</span>
+            <PlayCircle className="w-4 h-4 text-emerald-400" />
+            <span>Start Mock Session</span>
           </Link>
 
           <Link
             to="/questions"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-900/60 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold text-sm transition-all"
           >
             <BookOpen className="w-4 h-4 text-slate-400" />
-            <span>Browse Question Bank</span>
+            <span>Question Bank</span>
           </Link>
         </div>
 
@@ -117,37 +127,53 @@ export const Home = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Feature 0 - Voice AI Mentor */}
+          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/30 glass-card-hover space-y-4 bg-gradient-to-b from-purple-950/20 to-slate-900/40 relative overflow-hidden">
+            <div className="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300">
+              <Bot className="w-6 h-6 animate-pulse" />
+            </div>
+            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+              <span>Voice AI Mentor</span>
+              <span className="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                LIVE
+              </span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Talk directly with AI Interviewer personas. Experience real speech synthesis, speech-to-text dictation, and instant verbal coaching feedback.
+            </p>
+          </div>
+
           {/* Feature 1 */}
-          <div className="glass-card rounded-3xl p-8 border border-slate-800 glass-card-hover space-y-4">
+          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 glass-card-hover space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
               <Zap className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-white">Dynamic Mock Interviews</h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Experience authentic interview pressure. Customize your session by choosing specific categories, difficulty tiers, and timed challenges.
+            <h3 className="text-xl font-bold text-white">Dynamic Mock Sessions</h3>
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              Experience authentic interview pressure. Customize by choosing categories, difficulty tiers, and timed challenges.
             </p>
           </div>
 
           {/* Feature 2 */}
-          <div className="glass-card rounded-3xl p-8 border border-slate-800 glass-card-hover space-y-4">
+          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 glass-card-hover space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
               <BarChart3 className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-white">Smart Confidence Scoring</h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Rate your confidence on every answer. Generate visual analytics to pinpoint your strengths and identify high-priority study areas.
+            <h3 className="text-xl font-bold text-white">Confidence Scoring</h3>
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              Rate your confidence on every answer. Generate visual analytics to pinpoint strengths and key improvement areas.
             </p>
           </div>
 
           {/* Feature 3 */}
-          <div className="glass-card rounded-3xl p-8 border border-slate-800 glass-card-hover space-y-4">
+          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 glass-card-hover space-y-4">
             <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
               <Bookmark className="w-6 h-6" />
             </div>
-            <h3 className="text-xl font-bold text-white">Personal Bookmarks & History</h3>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Save challenging problems to your personal notebook. Review previous session transcripts and re-attempt tricky questions anytime.
+            <h3 className="text-xl font-bold text-white">Bookmarks & Transcripts</h3>
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+              Save challenging problems to your personal notebook. Review previous session transcripts and re-attempt anytime.
             </p>
           </div>
         </div>

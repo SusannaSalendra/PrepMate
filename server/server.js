@@ -18,6 +18,7 @@ const questionRoutes = require('./routes/questionRoutes');
 const bookmarkRoutes = require('./routes/bookmarkRoutes');
 const mockSessionRoutes = require('./routes/mockSessionRoutes');
 const userRoutes = require('./routes/userRoutes');
+const aiMentorRoutes = require('./routes/aiMentorRoutes');
 
 // Connect to Database
 connectDB();
@@ -111,6 +112,7 @@ app.use('/api/questions', questionRoutes);
 app.use('/api/bookmarks', bookmarkRoutes);
 app.use('/api/mock-sessions', mockSessionRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/ai-mentor', aiMentorRoutes);
 
 // Root route welcome message
 app.get('/', (req, res) => {

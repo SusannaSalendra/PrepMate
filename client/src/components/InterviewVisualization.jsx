@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Mic, Sparkles, Check, Code2, BarChart2 } from 'lucide-react';
+import { motion, useInView, animate } from 'framer-motion';
 
 export const InterviewVisualization = () => {
+  const progressRef = useRef(null);
+  const isInView = useInView(progressRef, { once: true, margin: '-40px' });
+  const [progressCount, setProgressCount] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(0, 85, {
+        duration: 1.8,
+        ease: [0.16, 1, 0.3, 1],
+        onUpdate: (latest) => setProgressCount(Math.round(latest)),
+      });
+      return () => controls.stop();
+    }
+  }, [isInView]);
+
   return (
     <div className="relative w-full max-w-[620px] lg:max-w-[680px] mx-auto flex items-center justify-center select-none py-6">
-      {/* Background Teal Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] bg-[#20C7C2]/15 rounded-full blur-[110px] pointer-events-none -z-10" />
+      {/* 5. Soft Animated Radial Glow Breathing Behind Hero Image */}
+      <motion.div
+        animate={{
+          scale: [1, 1.12, 1],
+          opacity: [0.35, 0.6, 0.35],
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-[#20C7C2]/30 via-[#0e8581]/25 to-[#32E4DF]/20 rounded-full blur-[110px] pointer-events-none -z-10"
+      />
 
       {/* Main Student & Laptop Frame Container */}
       <div className="relative w-full aspect-[16/10] sm:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-[#20C7C2]/20 bg-[#031310]">
@@ -58,8 +85,18 @@ export const InterviewVisualization = () => {
           <circle cx="520" cy="80" r="2.5" fill="#20C7C2" />
         </svg>
 
-        {/* Floating Glassmorphism Card 1: Voice Interview Dialogue & Waveform */}
-        <div className="absolute top-4 sm:top-6 left-3 sm:left-6 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 max-w-[210px] sm:max-w-[230px] animate-in fade-in zoom-in duration-500 hover:border-[#20C7C2]/60 transition-all">
+        {/* 3. Floating Glassmorphism Card 1: Voice Interview Dialogue & Waveform */}
+        <motion.div
+          animate={{
+            y: [0, -4, 0],
+          }}
+          transition={{
+            duration: 3.6,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute top-4 sm:top-6 left-3 sm:left-6 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 max-w-[210px] sm:max-w-[230px] hover:border-[#20C7C2]/60 transition-all duration-300"
+        >
           <div className="flex items-center gap-2.5 mb-2">
             <div className="w-8 h-8 rounded-full bg-[#031310] border border-[#20C7C2]/60 flex items-center justify-center text-[#20C7C2] shadow-[0_0_12px_rgba(32,199,194,0.35)]">
               <Mic className="w-4 h-4" />
@@ -84,10 +121,21 @@ export const InterviewVisualization = () => {
               />
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Floating Glassmorphism Card 2: AI Feedback Checklist */}
-        <div className="absolute top-[38%] sm:top-[36%] left-2 sm:left-4 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 max-w-[190px] sm:max-w-[210px] hover:border-[#20C7C2]/60 transition-all">
+        {/* 3. Floating Glassmorphism Card 2: AI Feedback Checklist */}
+        <motion.div
+          animate={{
+            y: [0, -3.5, 0],
+          }}
+          transition={{
+            duration: 4.2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 0.4,
+          }}
+          className="absolute top-[38%] sm:top-[36%] left-2 sm:left-4 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 max-w-[190px] sm:max-w-[210px] hover:border-[#20C7C2]/60 transition-all duration-300"
+        >
           <div className="flex items-center gap-1.5 mb-2 text-[#20C7C2] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>AI Feedback</span>
@@ -112,10 +160,21 @@ export const InterviewVisualization = () => {
               <span>Try to be concise</span>
             </li>
           </ul>
-        </div>
+        </motion.div>
 
-        {/* Floating Glassmorphism Card 3: Problem Analysis Breakdown */}
-        <div className="absolute top-4 sm:top-6 right-3 sm:right-6 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 w-[170px] sm:w-[190px] hover:border-[#20C7C2]/60 transition-all">
+        {/* 3. Floating Glassmorphism Card 3: Problem Analysis Breakdown */}
+        <motion.div
+          animate={{
+            y: [0, -4, 0],
+          }}
+          transition={{
+            duration: 3.8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 0.8,
+          }}
+          className="absolute top-4 sm:top-6 right-3 sm:right-6 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 w-[170px] sm:w-[190px] hover:border-[#20C7C2]/60 transition-all duration-300"
+        >
           <div className="flex items-center gap-1.5 mb-2.5 text-[#20C7C2] text-xs font-semibold">
             <Code2 className="w-3.5 h-3.5" />
             <span className="font-mono text-[11px]">&lt;/&gt; Analysis</span>
@@ -161,30 +220,67 @@ export const InterviewVisualization = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Floating Glassmorphism Card 4: Progress Analytics Card */}
-        <div className="absolute bottom-4 sm:bottom-6 right-3 sm:right-6 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 w-[170px] sm:w-[185px] hover:border-[#20C7C2]/60 transition-all">
+        {/* 3 & 6. Floating Glassmorphism Card 4: Progress Analytics Card with Count-Up */}
+        <motion.div
+          ref={progressRef}
+          animate={{
+            y: [0, -3.2, 0],
+          }}
+          transition={{
+            duration: 4.0,
+            repeat: Infinity,
+            ease: 'easeInOut',
+            delay: 1.2,
+          }}
+          className="absolute bottom-4 sm:bottom-6 right-3 sm:right-6 z-20 p-3 sm:p-3.5 rounded-2xl bg-[#061A16]/85 backdrop-blur-md border border-[#20C7C2]/30 shadow-xl shadow-black/60 w-[170px] sm:w-[185px] hover:border-[#20C7C2]/60 transition-all duration-300"
+        >
           <p className="text-[10px] sm:text-[11px] font-semibold text-[#8FA6A3] uppercase tracking-wider mb-2">
             Your Progress
           </p>
           <div className="flex items-end justify-between">
-            {/* Ascending Teal Bar Chart Graphic */}
+            {/* Ascending Teal Bar Chart Graphic with subtle animated height scaling */}
             <div className="flex items-end gap-1 h-8 pb-1">
-              <span className="w-1.5 h-3 bg-[#20C7C2]/40 rounded-t" />
-              <span className="w-1.5 h-4 bg-[#20C7C2]/60 rounded-t" />
-              <span className="w-1.5 h-6 bg-[#20C7C2]/80 rounded-t" />
-              <span className="w-1.5 h-7 bg-[#20C7C2] rounded-t shadow-[0_0_8px_#20C7C2]" />
-              <span className="w-1.5 h-8 bg-[#32E4DF] rounded-t shadow-[0_0_10px_#32E4DF]" />
+              <motion.span
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="w-1.5 h-3 bg-[#20C7C2]/40 rounded-t origin-bottom"
+              />
+              <motion.span
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="w-1.5 h-4 bg-[#20C7C2]/60 rounded-t origin-bottom"
+              />
+              <motion.span
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="w-1.5 h-6 bg-[#20C7C2]/80 rounded-t origin-bottom"
+              />
+              <motion.span
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="w-1.5 h-7 bg-[#20C7C2] rounded-t shadow-[0_0_8px_#20C7C2] origin-bottom"
+              />
+              <motion.span
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="w-1.5 h-8 bg-[#32E4DF] rounded-t shadow-[0_0_10px_#32E4DF] origin-bottom"
+              />
             </div>
             <div className="text-right">
-              <p className="text-xl sm:text-2xl font-bold font-display text-[#F9FBFB] leading-none text-[#20C7C2] drop-shadow-[0_0_10px_rgba(32,199,194,0.4)]">
-                85%
+              <p className="text-xl sm:text-2xl font-bold font-display leading-none text-[#20C7C2] drop-shadow-[0_0_10px_rgba(32,199,194,0.4)]">
+                {progressCount}%
               </p>
               <p className="text-[9px] text-[#8FA6A3] mt-0.5">Skills Improved</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Decorative Stack of Tech Books on Desk (Bottom Right Overlay) */}
         <div className="absolute bottom-2 right-24 hidden lg:flex flex-col items-center z-10 opacity-75 pointer-events-none">

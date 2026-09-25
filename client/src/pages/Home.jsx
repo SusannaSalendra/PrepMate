@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import api from '../api/axios';
 import HeroSection from '../components/HeroSection';
 import FeatureSection from '../components/FeatureSection';
@@ -22,6 +23,18 @@ export const Home = () => {
     fetchData();
   }, []);
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.65,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
     <div className="relative overflow-hidden bg-[#031310] min-h-screen">
       {/* Hero Section (Two-Column with Visualization) */}
@@ -30,8 +43,14 @@ export const Home = () => {
       {/* Horizontal Bottom Feature Strip */}
       <FeatureSection />
 
-      {/* Category Showcase Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-[#20C7C2]/15">
+      {/* 7. Category Showcase Section (Scroll-Triggered) */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-[#20C7C2]/15"
+      >
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
             <h2 className="text-xs font-bold tracking-widest text-[#20C7C2] uppercase mb-2 font-mono">
@@ -52,30 +71,37 @@ export const Home = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.length > 0 ? (
-            categories.map((cat) => (
-              <Link
-                key={cat._id}
-                to={`/questions?category=${encodeURIComponent(cat.name)}`}
-                className="rounded-2xl p-6 bg-[#061A16]/70 border border-[#20C7C2]/15 hover:border-[#20C7C2]/35 hover:bg-[#061A16] transition-all group flex flex-col justify-between"
+            categories.map((cat, idx) => (
+              <motion.div
+                key={cat._id || idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-base font-display font-semibold text-[#F9FBFB] group-hover:text-[#20C7C2] transition-colors">
-                      {cat.name}
-                    </h3>
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#20C7C2]/15 text-[#20C7C2] border border-[#20C7C2]/30">
-                      {cat.questionCount || 0} questions
-                    </span>
+                <Link
+                  to={`/questions?category=${encodeURIComponent(cat.name)}`}
+                  className="rounded-2xl p-6 bg-[#061A16]/70 border border-[#20C7C2]/15 hover:border-[#20C7C2]/40 hover:bg-[#061A16] hover:shadow-lg hover:shadow-[#20C7C2]/10 transition-all duration-300 group flex flex-col justify-between h-full"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-base font-display font-semibold text-[#F9FBFB] group-hover:text-[#20C7C2] transition-colors">
+                        {cat.name}
+                      </h3>
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#20C7C2]/15 text-[#20C7C2] border border-[#20C7C2]/30">
+                        {cat.questionCount || 0} questions
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#8FA6A3] line-clamp-2 leading-relaxed mb-4 font-sans">
+                      {cat.description || 'Comprehensive questions covering practical scenarios, principles, and edge cases.'}
+                    </p>
                   </div>
-                  <p className="text-xs text-[#8FA6A3] line-clamp-2 leading-relaxed mb-4 font-sans">
-                    {cat.description || 'Comprehensive questions covering practical scenarios, principles, and edge cases.'}
-                  </p>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-[#20C7C2] group-hover:translate-x-1 transition-transform">
-                  <span>Explore domain</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </Link>
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#20C7C2] group-hover:translate-x-1.5 transition-transform duration-200">
+                    <span>Explore domain</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </Link>
+              </motion.div>
             ))
           ) : (
             <div className="col-span-3 text-center p-12 rounded-2xl bg-[#061A16]/50 border border-[#20C7C2]/15">
@@ -85,10 +111,16 @@ export const Home = () => {
             </div>
           )}
         </div>
-      </section>
+      </motion.section>
 
-      {/* Call to Action Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      {/* 7. Call to Action Banner (Scroll-Triggered) */}
+      <motion.section
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+      >
         <div className="relative rounded-3xl overflow-hidden p-8 sm:p-14 bg-gradient-to-br from-[#061A16] via-[#041512] to-[#020B09] border border-[#20C7C2]/25 text-center shadow-2xl">
           <div className="max-w-2xl mx-auto space-y-6">
             <h2 className="text-3xl sm:text-4xl font-display font-medium text-white tracking-tight">
@@ -100,7 +132,7 @@ export const Home = () => {
             <div className="pt-2">
               <Link
                 to="/register"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#20C7C2] hover:bg-[#32E4DF] text-[#031310] font-bold text-xs sm:text-sm shadow-xl shadow-[#20C7C2]/25 transition-all hover:scale-105 active:scale-95"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#20C7C2] hover:bg-[#32E4DF] text-[#031310] font-bold text-xs sm:text-sm shadow-xl shadow-[#20C7C2]/25 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(32,199,194,0.45)] active:scale-95 transition-all duration-200"
               >
                 <span>Create Free Account</span>
                 <ArrowRight className="w-4 h-4" />
@@ -108,7 +140,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

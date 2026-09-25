@@ -33,7 +33,7 @@ export const Navbar = () => {
   };
 
   const navLinkStyle = ({ isActive }) =>
-    `flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 ${
+    `relative group flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 overflow-hidden ${
       isActive
         ? 'bg-[#20C7C2]/15 text-[#20C7C2] border border-[#20C7C2]/35 shadow-sm'
         : 'text-[#8FA6A3] hover:text-[#F1F3F2] hover:bg-[#061A16]'
@@ -52,7 +52,7 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Left: Circular Logo + Brand Name */}
           <Link to="/" className="flex items-center gap-2.5 group" title="PrepMate Home">
-            <div className="w-9 h-9 rounded-full bg-[#061A16] border border-[#20C7C2]/50 flex items-center justify-center shadow-lg shadow-[#20C7C2]/20 group-hover:border-[#20C7C2] group-hover:scale-105 transition-all">
+            <div className="w-9 h-9 rounded-full bg-[#061A16] border border-[#20C7C2]/50 flex items-center justify-center shadow-lg shadow-[#20C7C2]/20 group-hover:border-[#20C7C2] group-hover:scale-105 transition-all duration-200">
               <Mic className="w-4 h-4 text-[#20C7C2]" />
             </div>
             <span className="text-lg font-bold text-[#F9FBFB] font-display tracking-tight group-hover:text-[#20C7C2] transition-colors">
@@ -60,30 +60,33 @@ export const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Nav Links with 4. Sliding Hover Underline */}
           <nav className="hidden md:flex items-center gap-1.5">
             <NavLink to="/" className={navLinkStyle}>
               <Sparkles className="w-3.5 h-3.5 text-[#20C7C2]" />
               <span>Home</span>
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#20C7C2] group-hover:w-full transition-all duration-300 ease-out" />
             </NavLink>
 
             <NavLink to="/questions" className={navLinkStyle}>
               <BookOpen className="w-3.5 h-3.5 text-[#20C7C2]" />
               <span>Questions</span>
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#20C7C2] group-hover:w-full transition-all duration-300 ease-out" />
             </NavLink>
 
             <NavLink to="/mock-interview" className={navLinkStyle}>
               <PlayCircle className="w-3.5 h-3.5 text-[#20C7C2]" />
               <span>Mock Interview</span>
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#20C7C2] group-hover:w-full transition-all duration-300 ease-out" />
             </NavLink>
 
             <NavLink
               to="/ai-mentor"
               className={({ isActive }) =>
-                `flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 ${
+                `relative group flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 overflow-hidden ${
                   isActive
                     ? 'bg-[#20C7C2]/20 text-[#20C7C2] border border-[#20C7C2]/40 shadow-sm'
-                    : 'text-[#20C7C2] hover:text-white hover:bg-[#061A16] border border-[#20C7C2]/25'
+                    : 'text-[#20C7C2] hover:text-white hover:bg-[#20C7C2]/10 border border-[#20C7C2]/25 hover:border-[#20C7C2]/60'
                 }`
               }
             >
@@ -92,6 +95,7 @@ export const Navbar = () => {
               <span className="px-1.5 py-0.2 rounded-md text-[9px] font-bold bg-[#20C7C2]/25 text-[#20C7C2] border border-[#20C7C2]/40">
                 VOICE
               </span>
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#20C7C2] group-hover:w-full transition-all duration-300 ease-out" />
             </NavLink>
 
             {isAuthenticated && (
@@ -99,21 +103,24 @@ export const Navbar = () => {
                 <NavLink to="/bookmarks" className={navLinkStyle}>
                   <Bookmark className="w-3.5 h-3.5 text-[#20C7C2]" />
                   <span>Bookmarks</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#20C7C2] group-hover:w-full transition-all duration-300 ease-out" />
                 </NavLink>
 
                 <NavLink to="/sessions" className={navLinkStyle}>
                   <History className="w-3.5 h-3.5 text-[#20C7C2]" />
                   <span>History</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#20C7C2] group-hover:w-full transition-all duration-300 ease-out" />
                 </NavLink>
 
                 <NavLink to="/dashboard" className={navLinkStyle}>
                   <BarChart3 className="w-3.5 h-3.5 text-[#20C7C2]" />
                   <span>Dashboard</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#20C7C2] group-hover:w-full transition-all duration-300 ease-out" />
                 </NavLink>
 
                 {isAdmin && (
                   <div className="relative group ml-1">
-                    <button className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold bg-[#20C7C2]/10 text-[#20C7C2] border border-[#20C7C2]/30 hover:bg-[#20C7C2]/20 transition-all">
+                    <button className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold bg-[#20C7C2]/10 text-[#20C7C2] border border-[#20C7C2]/30 hover:bg-[#20C7C2]/20 hover:border-[#20C7C2]/60 transition-all duration-200">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Admin</span>
                     </button>
@@ -145,7 +152,7 @@ export const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2.5 p-1.5 pl-3 rounded-full bg-[#061A16] border border-[#20C7C2]/20 hover:border-[#20C7C2]/40 transition-all"
+                  className="flex items-center gap-2.5 p-1.5 pl-3 rounded-full bg-[#061A16] border border-[#20C7C2]/20 hover:border-[#20C7C2]/60 hover:bg-[#20C7C2]/10 transition-all duration-200"
                 >
                   <span className="text-xs font-medium text-[#F1F3F2]">
                     {user?.name}
@@ -198,13 +205,13 @@ export const Navbar = () => {
               <div className="flex items-center gap-3">
                 <Link
                   to="/login"
-                  className="px-3.5 py-1.5 text-xs font-medium text-[#C8D8D5] hover:text-white transition-colors"
+                  className="px-3.5 py-1.5 text-xs font-medium text-[#C8D8D5] hover:text-white border border-transparent hover:border-[#20C7C2]/30 hover:bg-[#20C7C2]/10 rounded-xl transition-all duration-200"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="flex items-center gap-1.5 px-5 py-2 text-xs font-bold text-[#031310] bg-[#20C7C2] hover:bg-[#32E4DF] rounded-full shadow-lg shadow-[#20C7C2]/25 transition-all hover:scale-105 active:scale-95"
+                  className="flex items-center gap-1.5 px-5 py-2 text-xs font-bold text-[#031310] bg-[#20C7C2] hover:bg-[#32E4DF] rounded-full shadow-lg shadow-[#20C7C2]/25 hover:scale-[1.03] hover:shadow-[0_0_25px_rgba(32,199,194,0.45)] active:scale-95 transition-all duration-200"
                 >
                   <span>Get Started</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#031310]" />

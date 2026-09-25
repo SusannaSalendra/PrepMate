@@ -4,14 +4,14 @@
 
 @layer base {
   :root {
-    --font-display: 'Fraunces', Georgia, serif;
+    --font-display: 'DM Serif Display', 'Fraunces', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', Inter, system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #0D1614;
+    background-color: #031310;
     color: #F1F3F2;
     overflow-x: hidden;
   }
@@ -22,39 +22,39 @@
   }
 }
 
-/* Custom Sea-Green Scrollbar */
+/* Custom Turquoise Scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0D1614;
+  background: #031310;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #162B27;
+  background: #0A2620;
   border-radius: 9999px;
-  border: 1px solid rgba(32, 178, 170, 0.1);
+  border: 1px solid rgba(32, 199, 194, 0.1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #20B2AA;
+  background: #20C7C2;
 }
 
 /* Refined Glassmorphism Utility Classes */
 .glass-panel {
-  background: rgba(16, 32, 29, 0.75);
+  background: rgba(6, 26, 22, 0.75);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(32, 178, 170, 0.14);
+  border: 1px solid rgba(32, 199, 194, 0.15);
 }
 
 .glass-card {
-  background: rgba(16, 32, 29, 0.45);
+  background: rgba(6, 26, 22, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(32, 178, 170, 0.12);
+  border: 1px solid rgba(32, 199, 194, 0.14);
 }
 
 .glass-card-hover {
@@ -63,18 +63,18 @@
 
 .glass-card-hover:hover {
   transform: translateY(-2px);
-  background: rgba(16, 32, 29, 0.8);
-  border-color: rgba(32, 178, 170, 0.35);
-  box-shadow: 0 12px 30px -10px rgba(32, 178, 170, 0.15);
+  background: rgba(6, 26, 22, 0.85);
+  border-color: rgba(32, 199, 194, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(32, 199, 194, 0.2);
 }
 
-/* Sea-Green Glow */
-.glow-seagreen {
-  box-shadow: 0 0 45px -8px rgba(32, 178, 170, 0.22);
+/* Turquoise Glow */
+.glow-turquoise {
+  box-shadow: 0 0 45px -8px rgba(32, 199, 194, 0.25);
 }
 
-.glow-seagreen-sm {
-  box-shadow: 0 0 20px -4px rgba(32, 178, 170, 0.3);
+.glow-turquoise-sm {
+  box-shadow: 0 0 20px -4px rgba(32, 199, 194, 0.35);
 }
 
 /* Markdown preview formatting for solutions & interview answers */

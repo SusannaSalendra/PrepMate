@@ -36,9 +36,11 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/signup" element={<Register />} />
               <Route path="/questions" element={<QuestionBank />} />
               <Route path="/questions/:id" element={<QuestionDetail />} />
               <Route path="/ai-mentor" element={<AiMentor />} />
+              <Route path="/voice" element={<AiMentor />} />
 
               {/* Protected User Routes */}
               <Route

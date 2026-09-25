@@ -8,33 +8,34 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
+        serif: ['"DM Serif Display"', 'Fraunces', 'Georgia', 'serif'],
+        display: ['"DM Serif Display"', 'Fraunces', 'Georgia', 'serif'],
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        seagreen: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#3FD1C7',
-          500: '#20B2AA', // Core brand primary
-          600: '#17847E',
-          700: '#0E6E68',
-          800: '#0F4A46',
-          900: '#083330',
-          950: '#041f1d',
+        cyanbrand: {
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#20C7C2', // Primary bright turquoise accent
+          600: '#15aba6',
+          700: '#0e8581',
+          800: '#116360',
+          900: '#13524f',
+          950: '#042f2e',
         },
         charcoal: {
-          950: '#070C0B',
-          900: '#0D1614', // Canvas background
-          850: '#10201D', // Surface cards
-          800: '#162B27', // Card border / elevated surfaces
-          700: '#203B36', // Muted borders
-          600: '#32544E',
-          400: '#8EA3A0', // Subtitle / secondary text
-          200: '#C8D5D3',
+          950: '#020b09',
+          900: '#031310', // Very dark green-black background
+          850: '#061a16', // Surface cards
+          800: '#0a2620', // Card border / elevated surfaces
+          700: '#103932',
+          600: '#1e5349',
+          400: '#8FA6A3', // Subtitle / secondary text
+          200: '#C8D8D5',
           100: '#F1F3F2', // Body text
           50: '#F9FBFB',  // Headlines
         },

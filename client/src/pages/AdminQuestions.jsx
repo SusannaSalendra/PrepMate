@@ -6,10 +6,8 @@ import {
   Search,
   BookOpen,
   X,
-  Check,
   AlertCircle,
-  Building2,
-  Tag,
+  Sparkles,
 } from 'lucide-react';
 import api from '../api/axios';
 import { Loader } from '../components/Loader';
@@ -146,22 +144,26 @@ export const AdminQuestions = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-6 border-b border-[#20B2AA]/15">
         <div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-            <BookOpen className="w-7 h-7 text-amber-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/20 text-[#3FD1C7] text-xs font-semibold mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Curriculum Management</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-display font-bold text-[#F9FBFB] tracking-tight flex items-center gap-3">
+            <BookOpen className="w-8 h-8 text-[#20B2AA]" />
             <span>Admin Questions Manager</span>
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
-            Create, update, and manage the technical interview problem database
+          <p className="text-sm text-[#8EA3A0] mt-1">
+            Create, update, and manage the technical interview problem database.
           </p>
         </div>
 
         <button
           onClick={openCreateModal}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all self-start sm:self-center"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-lg shadow-[#20B2AA]/20 transition-all self-start sm:self-auto hover:-translate-y-0.5"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Question</span>
@@ -169,9 +171,9 @@ export const AdminQuestions = () => {
       </div>
 
       {/* Filter Bar */}
-      <div className="glass-card rounded-2xl p-4 border border-slate-800 mb-6 flex items-center justify-between">
+      <div className="glass-card rounded-2xl p-4 border border-[#20B2AA]/15 mb-6 flex items-center justify-between">
         <div className="relative w-full max-w-md">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#8EA3A0]">
             <Search className="w-4 h-4" />
           </div>
           <input
@@ -179,11 +181,11 @@ export const AdminQuestions = () => {
             value={searchFilter}
             onChange={(e) => setSearchFilter(e.target.value)}
             placeholder="Search questions by title, company, or category..."
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+            className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#10201D] border border-[#20B2AA]/20 text-[#F1F3F2] placeholder-[#8EA3A0]/60 text-xs focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] transition-all"
           />
         </div>
-        <span className="text-xs text-slate-400 hidden sm:inline">
-          Total: <strong className="text-white">{filteredQuestions.length}</strong> questions
+        <span className="text-xs text-[#8EA3A0] hidden sm:inline">
+          Total: <strong className="text-[#3FD1C7]">{filteredQuestions.length}</strong> questions
         </span>
       </div>
 
@@ -191,10 +193,10 @@ export const AdminQuestions = () => {
       {loading ? (
         <Loader text="Loading questions database..." />
       ) : (
-        <div className="glass-card rounded-3xl border border-slate-800 overflow-hidden shadow-2xl">
+        <div className="glass-card rounded-3xl border border-[#20B2AA]/15 overflow-hidden shadow-2xl">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-300">
-              <thead className="bg-slate-900/90 text-slate-400 uppercase tracking-wider text-[10px] border-b border-slate-800">
+            <table className="w-full text-left text-xs text-[#F1F3F2]">
+              <thead className="bg-[#10201D] text-[#8EA3A0] uppercase tracking-wider text-[10px] border-b border-[#20B2AA]/15">
                 <tr>
                   <th className="px-6 py-4">Title</th>
                   <th className="px-6 py-4">Category</th>
@@ -203,41 +205,33 @@ export const AdminQuestions = () => {
                   <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800">
+              <tbody className="divide-y divide-[#20B2AA]/10">
                 {filteredQuestions.map((q) => (
-                  <tr key={q._id} className="hover:bg-slate-800/40 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-white max-w-sm truncate">
+                  <tr key={q._id} className="hover:bg-[#162B27]/40 transition-colors">
+                    <td className="px-6 py-4 font-semibold text-[#F9FBFB] max-w-sm truncate">
                       {q.title}
                     </td>
-                    <td className="px-6 py-4 text-slate-400">
+                    <td className="px-6 py-4 text-[#8EA3A0]">
                       {q.category?.name || 'Uncategorized'}
                     </td>
                     <td className="px-6 py-4">
-                      <span
-                        className={`px-2 py-0.5 rounded-full font-semibold text-[10px] ${
-                          q.difficulty === 'Easy'
-                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
-                            : q.difficulty === 'Hard'
-                            ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
-                            : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
-                        }`}
-                      >
+                      <span className="px-2.5 py-0.5 rounded-full font-semibold text-[10px] bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/25">
                         {q.difficulty}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-slate-400">{q.company || '—'}</td>
+                    <td className="px-6 py-4 text-[#8EA3A0]">{q.company || '—'}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditModal(q)}
-                          className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-indigo-300 transition-colors"
+                          className="p-1.5 rounded-lg bg-[#10201D] hover:bg-[#162B27] text-[#3FD1C7] border border-[#20B2AA]/20 transition-colors"
                           title="Edit Question"
                         >
                           <Edit className="w-3.5 h-3.5" />
                         </button>
                         <button
                           onClick={() => handleDeleteQuestion(q._id, q.title)}
-                          className="p-1.5 rounded-lg bg-slate-800 hover:bg-red-500/20 text-red-400 transition-colors"
+                          className="p-1.5 rounded-lg bg-[#10201D] hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 transition-colors"
                           title="Delete Question"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -254,15 +248,15 @@ export const AdminQuestions = () => {
 
       {/* Create / Edit Question Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
-          <div className="w-full max-w-2xl rounded-3xl bg-slate-900 border border-slate-800 p-6 sm:p-8 shadow-2xl my-8 animate-in fade-in zoom-in-95">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
-              <h3 className="text-lg font-bold text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0D1614]/80 backdrop-blur-md overflow-y-auto">
+          <div className="w-full max-w-2xl rounded-3xl bg-[#10201D] border border-[#20B2AA]/25 p-6 sm:p-8 shadow-2xl my-8 animate-in fade-in zoom-in-95">
+            <div className="flex items-center justify-between pb-4 border-b border-[#20B2AA]/15 mb-6">
+              <h3 className="text-xl font-display font-bold text-[#F9FBFB]">
                 {editingQuestion ? 'Edit Question' : 'Create New Question'}
               </h3>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800"
+                className="p-1.5 rounded-xl text-[#8EA3A0] hover:text-[#F9FBFB] hover:bg-[#162B27]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -277,7 +271,7 @@ export const AdminQuestions = () => {
 
             <form onSubmit={handleFormSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#8EA3A0] mb-1">
                   Question Title *
                 </label>
                 <input
@@ -286,23 +280,23 @@ export const AdminQuestions = () => {
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. Implement an LRU Cache"
                   required
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1614] border border-[#20B2AA]/20 text-[#F1F3F2] text-xs focus:outline-none focus:border-[#20B2AA]"
                 />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-[#8EA3A0] mb-1">
                     Category *
                   </label>
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     required
-                    className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2.5 rounded-xl bg-[#0D1614] border border-[#20B2AA]/20 text-[#F1F3F2] text-xs focus:outline-none focus:border-[#20B2AA]"
                   >
                     {categories.map((c) => (
-                      <option key={c._id} value={c._id}>
+                      <option key={c._id} value={c._id} className="bg-[#0D1614]">
                         {c.name}
                       </option>
                     ))}
@@ -310,22 +304,22 @@ export const AdminQuestions = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-[#8EA3A0] mb-1">
                     Difficulty *
                   </label>
                   <select
                     value={formData.difficulty}
                     onChange={(e) => setFormData({ ...formData, difficulty: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2.5 rounded-xl bg-[#0D1614] border border-[#20B2AA]/20 text-[#F1F3F2] text-xs focus:outline-none focus:border-[#20B2AA]"
                   >
-                    <option value="Easy">Easy</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Hard">Hard</option>
+                    <option value="Easy" className="bg-[#0D1614]">Easy</option>
+                    <option value="Medium" className="bg-[#0D1614]">Medium</option>
+                    <option value="Hard" className="bg-[#0D1614]">Hard</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-[#8EA3A0] mb-1">
                     Company Tag
                   </label>
                   <input
@@ -333,13 +327,13 @@ export const AdminQuestions = () => {
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. Google, Meta"
-                    className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2.5 rounded-xl bg-[#0D1614] border border-[#20B2AA]/20 text-[#F1F3F2] text-xs focus:outline-none focus:border-[#20B2AA]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#8EA3A0] mb-1">
                   Tags (comma separated)
                 </label>
                 <input
@@ -347,12 +341,12 @@ export const AdminQuestions = () => {
                   value={formData.tags}
                   onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
                   placeholder="Array, Two Pointers, Dynamic Programming"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-[#0D1614] border border-[#20B2AA]/20 text-[#F1F3F2] text-xs focus:outline-none focus:border-[#20B2AA]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-[#8EA3A0] mb-1">
                   Description / Answer Solution (supports Markdown) *
                 </label>
                 <textarea
@@ -361,22 +355,22 @@ export const AdminQuestions = () => {
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="### Problem&#10;...&#10;### Optimal Approach&#10;..."
                   required
-                  className="w-full p-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs font-mono focus:outline-none focus:border-indigo-500"
+                  className="w-full p-3.5 rounded-xl bg-[#0D1614] border border-[#20B2AA]/20 text-[#F1F3F2] text-xs font-mono focus:outline-none focus:border-[#20B2AA]"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#20B2AA]/15">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700"
+                  className="px-4 py-2 rounded-xl bg-[#162B27] text-[#8EA3A0] text-xs font-semibold hover:text-[#F9FBFB]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={formSubmitting}
-                  className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30"
+                  className="px-5 py-2 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-lg shadow-[#20B2AA]/20 transition-all hover:-translate-y-0.5"
                 >
                   {formSubmitting ? 'Saving...' : editingQuestion ? 'Update Question' : 'Create Question'}
                 </button>

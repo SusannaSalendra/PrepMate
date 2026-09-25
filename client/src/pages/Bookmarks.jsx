@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Bookmark, Search, BookOpen, Trash2, ArrowRight } from 'lucide-react';
+import { Bookmark, Search, BookOpen, Sparkles } from 'lucide-react';
 import api from '../api/axios';
 import QuestionCard from '../components/QuestionCard';
 import { CardSkeleton } from '../components/Loader';
@@ -50,30 +50,34 @@ export const Bookmarks = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-6 border-b border-[#20B2AA]/15">
         <div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-            <Bookmark className="w-7 h-7 text-amber-400 fill-amber-400" />
-            <span>My Saved Bookmarks</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/20 text-[#3FD1C7] text-xs font-semibold mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Saved Problems</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-display font-bold text-[#F9FBFB] tracking-tight flex items-center gap-3">
+            <Bookmark className="w-8 h-8 text-[#20B2AA] fill-[#20B2AA]" />
+            <span>My Bookmarks</span>
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
-            Review and practice the questions you've saved for later study
+          <p className="text-sm text-[#8EA3A0] mt-1">
+            Review and practice the technical questions you've saved for focused study.
           </p>
         </div>
 
         {bookmarks.length > 0 && (
           <div className="relative w-full sm:w-72">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#8EA3A0]">
               <Search className="w-4 h-4" />
             </div>
             <input
               type="text"
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
-              placeholder="Filter saved questions..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+              placeholder="Filter saved problems..."
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#10201D] border border-[#20B2AA]/20 text-[#F1F3F2] placeholder-[#8EA3A0]/60 text-xs focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] transition-all"
             />
           </div>
         )}
@@ -94,19 +98,21 @@ export const Bookmarks = () => {
           ))}
         </div>
       ) : (
-        <div className="glass-card rounded-3xl p-12 text-center border border-slate-800">
-          <Bookmark className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <h3 className="text-lg font-bold text-white mb-1">
+        <div className="glass-card rounded-3xl p-12 text-center border border-[#20B2AA]/15 max-w-xl mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-[#20B2AA]/10 border border-[#20B2AA]/20 flex items-center justify-center text-[#20B2AA] mx-auto mb-4">
+            <Bookmark className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-display font-bold text-[#F9FBFB] mb-2">
             {searchFilter ? 'No matching saved questions' : 'No bookmarks saved yet'}
           </h3>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto mb-6">
+          <p className="text-xs text-[#8EA3A0] max-w-sm mx-auto mb-6 leading-relaxed">
             {searchFilter
-              ? 'Try adjusting your search keyword.'
-              : 'Save interesting or difficult interview problems while browsing the question bank to review them here anytime.'}
+              ? 'Try adjusting your search keyword to find the saved problem.'
+              : 'Save interesting or challenging interview problems while browsing the question bank to review them here anytime.'}
           </p>
           <Link
             to="/questions"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-500/25 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-lg shadow-[#20B2AA]/20 transition-all hover:-translate-y-0.5"
           >
             <BookOpen className="w-4 h-4" />
             <span>Browse Question Bank</span>

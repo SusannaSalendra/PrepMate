@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Clock, Award, CheckCircle, AlertCircle, ArrowRight, RotateCcw, Star } from 'lucide-react';
+import { Clock, CheckCircle, ArrowRight, RotateCcw, Star } from 'lucide-react';
 
 export const SessionSummaryCard = ({ session }) => {
   const answeredQuestions = session.questions.filter((q) => q.status === 'Answered');
-  const skippedQuestions = session.questions.filter((q) => q.status === 'Skipped');
   const totalQuestions = session.questions.length;
 
   const totalConfidence = answeredQuestions.reduce(
@@ -33,49 +32,49 @@ export const SessionSummaryCard = ({ session }) => {
   };
 
   return (
-    <div className="glass-card rounded-2xl p-6 border border-slate-800 hover:border-slate-700 transition-all">
+    <div className="glass-card rounded-2xl p-6 border border-[#20B2AA]/15 hover:border-[#20B2AA]/35 transition-all">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-4 border-b border-slate-800/80">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-4 border-b border-[#20B2AA]/15">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-indigo-400">
-            {session.category?.name || 'General Category'}
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#3FD1C7] font-mono">
+            {session.category?.name || 'General Domain'}
           </span>
-          <p className="text-xs text-slate-400">{formatDate(session.createdAt)}</p>
+          <p className="text-[11px] text-charcoal-400 mt-0.5">{formatDate(session.createdAt)}</p>
         </div>
 
-        <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-charcoal-850 text-charcoal-200 border border-[#20B2AA]/15">
           Difficulty: {session.difficulty}
         </span>
       </div>
 
       {/* Grid Stats */}
       <div className="grid grid-cols-3 gap-3 mb-6">
-        <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
-          <p className="text-xs text-slate-400 flex items-center justify-center gap-1 mb-1">
-            <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="p-3 rounded-xl bg-charcoal-850/80 border border-[#20B2AA]/15 text-center">
+          <p className="text-[11px] text-charcoal-400 flex items-center justify-center gap-1 mb-1">
+            <CheckCircle className="w-3.5 h-3.5 text-[#20B2AA]" />
             Answered
           </p>
-          <p className="text-lg font-bold text-white">
-            {answeredQuestions.length} <span className="text-xs text-slate-500 font-normal">/ {totalQuestions}</span>
+          <p className="text-base font-bold font-display text-white">
+            {answeredQuestions.length} <span className="text-[11px] text-charcoal-400 font-normal">/ {totalQuestions}</span>
           </p>
         </div>
 
-        <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
-          <p className="text-xs text-slate-400 flex items-center justify-center gap-1 mb-1">
-            <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
-            Avg Confidence
+        <div className="p-3 rounded-xl bg-charcoal-850/80 border border-[#20B2AA]/15 text-center">
+          <p className="text-[11px] text-charcoal-400 flex items-center justify-center gap-1 mb-1">
+            <Star className="w-3.5 h-3.5 text-[#20B2AA] fill-[#20B2AA]" />
+            Confidence
           </p>
-          <p className="text-lg font-bold text-amber-300">
-            {avgConfidence} <span className="text-xs text-slate-500 font-normal">/ 5</span>
+          <p className="text-base font-bold font-display text-[#3FD1C7]">
+            {avgConfidence} <span className="text-[11px] text-charcoal-400 font-normal">/ 5</span>
           </p>
         </div>
 
-        <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
-          <p className="text-xs text-slate-400 flex items-center justify-center gap-1 mb-1">
-            <Clock className="w-3.5 h-3.5 text-cyan-400" />
+        <div className="p-3 rounded-xl bg-charcoal-850/80 border border-[#20B2AA]/15 text-center">
+          <p className="text-[11px] text-charcoal-400 flex items-center justify-center gap-1 mb-1">
+            <Clock className="w-3.5 h-3.5 text-[#20B2AA]" />
             Time Taken
           </p>
-          <p className="text-lg font-bold text-cyan-300">
+          <p className="text-base font-bold font-display text-[#20B2AA]">
             {formatDuration(session.timeTakenSeconds || 0)}
           </p>
         </div>
@@ -85,7 +84,7 @@ export const SessionSummaryCard = ({ session }) => {
       <div className="flex items-center justify-between gap-3 pt-2">
         <Link
           to={`/sessions/${session._id}`}
-          className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold transition-all"
+          className="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-[#20B2AA]/15 hover:bg-[#20B2AA]/25 text-[#3FD1C7] border border-[#20B2AA]/30 text-xs font-semibold transition-all"
         >
           <span>Review Answers</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -93,10 +92,10 @@ export const SessionSummaryCard = ({ session }) => {
 
         <Link
           to="/mock-interview"
-          className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800 text-xs font-semibold transition-all"
+          className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 text-charcoal-400 hover:text-white border border-[#20B2AA]/15 text-xs font-semibold transition-all"
           title="Start a new session"
         >
-          <RotateCcw className="w-3.5 h-3.5" />
+          <RotateCcw className="w-3.5 h-3.5 text-[#20B2AA]" />
           <span>New Session</span>
         </Link>
       </div>

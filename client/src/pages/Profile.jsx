@@ -65,45 +65,49 @@ export const Profile = () => {
     : 'Recently';
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-          <User className="w-7 h-7 text-indigo-400" />
+      <div className="mb-8 pb-6 border-b border-[#20B2AA]/15">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/20 text-[#3FD1C7] text-xs font-semibold mb-3">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Account Settings</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-display font-bold text-[#F9FBFB] tracking-tight flex items-center gap-3">
+          <User className="w-8 h-8 text-[#20B2AA]" />
           <span>My Profile & Settings</span>
         </h1>
-        <p className="text-sm text-slate-400 mt-1">
-          Manage your personal account settings and security credentials
+        <p className="text-sm text-[#8EA3A0] mt-1">
+          Manage your personal account preferences and security credentials.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         {/* User Card Sidebar */}
         <div className="md:col-span-4 space-y-6">
-          <div className="glass-card rounded-3xl p-6 border border-slate-800 text-center">
-            <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4 shadow-xl shadow-indigo-500/20">
+          <div className="glass-card rounded-3xl p-6 border border-[#20B2AA]/15 text-center">
+            <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-[#0E6E68] to-[#20B2AA] flex items-center justify-center text-[#0D1614] text-3xl font-display font-bold mx-auto mb-4 shadow-xl shadow-[#20B2AA]/20">
               {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
             </div>
-            <h2 className="text-lg font-bold text-white">{user?.name}</h2>
-            <p className="text-xs text-slate-400 mb-4">{user?.email}</p>
+            <h2 className="text-lg font-display font-bold text-[#F9FBFB]">{user?.name}</h2>
+            <p className="text-xs text-[#8EA3A0] mb-4 truncate">{user?.email}</p>
 
-            <div className="pt-4 border-t border-slate-800/80 space-y-2 text-left text-xs">
-              <div className="flex items-center justify-between text-slate-400">
+            <div className="pt-4 border-t border-[#20B2AA]/15 space-y-2.5 text-left text-xs">
+              <div className="flex items-center justify-between text-[#8EA3A0]">
                 <span className="flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5 text-indigo-400" />
+                  <Shield className="w-3.5 h-3.5 text-[#20B2AA]" />
                   Account Role
                 </span>
-                <span className="capitalize font-bold text-white px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300">
+                <span className="capitalize font-bold px-2.5 py-0.5 rounded-full bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/25">
                   {user?.role}
                 </span>
               </div>
 
-              <div className="flex items-center justify-between text-slate-400">
+              <div className="flex items-center justify-between text-[#8EA3A0]">
                 <span className="flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+                  <Calendar className="w-3.5 h-3.5 text-[#20B2AA]" />
                   Member Since
                 </span>
-                <span className="font-medium text-slate-300">{memberSince}</span>
+                <span className="font-medium text-[#F1F3F2]">{memberSince}</span>
               </div>
             </div>
           </div>
@@ -111,10 +115,10 @@ export const Profile = () => {
 
         {/* Edit Form */}
         <div className="md:col-span-8">
-          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800">
+          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-[#20B2AA]/15">
             {successMsg && (
-              <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-xs animate-in fade-in">
-                <CheckCircle className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div className="mb-6 p-4 rounded-xl bg-[#20B2AA]/15 border border-[#20B2AA]/30 flex items-center gap-3 text-[#3FD1C7] text-xs animate-in fade-in">
+                <CheckCircle className="w-4 h-4 text-[#20B2AA] shrink-0" />
                 <span>{successMsg}</span>
               </div>
             )}
@@ -128,11 +132,11 @@ export const Profile = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <h3 className="text-sm font-bold text-white mb-4">Personal Details</h3>
+                <h3 className="text-sm font-display font-bold text-[#F9FBFB] mb-4">Personal Details</h3>
                 <div className="space-y-4">
                   {/* Name */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-[#8EA3A0] uppercase tracking-wider mb-1.5">
                       Full Name
                     </label>
                     <input
@@ -140,13 +144,13 @@ export const Profile = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500"
+                      className="w-full px-4 py-3 rounded-xl bg-[#10201D] border border-[#20B2AA]/20 text-[#F1F3F2] text-sm focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] transition-all"
                     />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-[#8EA3A0] uppercase tracking-wider mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -154,22 +158,22 @@ export const Profile = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white text-sm focus:outline-none focus:border-indigo-500"
+                      className="w-full px-4 py-3 rounded-xl bg-[#10201D] border border-[#20B2AA]/20 text-[#F1F3F2] text-sm focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] transition-all"
                     />
                   </div>
                 </div>
               </div>
 
               {/* Password Section */}
-              <div className="pt-6 border-t border-slate-800">
-                <h3 className="text-sm font-bold text-white mb-1">Change Password</h3>
-                <p className="text-xs text-slate-400 mb-4">
-                  Leave blank if you do not want to update your current password.
+              <div className="pt-6 border-t border-[#20B2AA]/15">
+                <h3 className="text-sm font-display font-bold text-[#F9FBFB] mb-1">Change Password</h3>
+                <p className="text-xs text-[#8EA3A0] mb-4">
+                  Leave blank if you do not wish to change your current password.
                 </p>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-[#8EA3A0] uppercase tracking-wider mb-1.5">
                       Current Password
                     </label>
                     <input
@@ -177,13 +181,13 @@ export const Profile = () => {
                       value={currentPassword}
                       onChange={(e) => setCurrentPassword(e.target.value)}
                       placeholder="••••••••"
-                      className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500"
+                      className="w-full px-4 py-3 rounded-xl bg-[#10201D] border border-[#20B2AA]/20 text-[#F1F3F2] placeholder-[#8EA3A0]/60 text-sm focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] transition-all"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-[#8EA3A0] uppercase tracking-wider mb-1.5">
                         New Password
                       </label>
                       <input
@@ -191,11 +195,11 @@ export const Profile = () => {
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500"
+                        className="w-full px-4 py-3 rounded-xl bg-[#10201D] border border-[#20B2AA]/20 text-[#F1F3F2] placeholder-[#8EA3A0]/60 text-sm focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] transition-all"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-[#8EA3A0] uppercase tracking-wider mb-1.5">
                         Confirm New Password
                       </label>
                       <input
@@ -203,7 +207,7 @@ export const Profile = () => {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-indigo-500"
+                        className="w-full px-4 py-3 rounded-xl bg-[#10201D] border border-[#20B2AA]/20 text-[#F1F3F2] placeholder-[#8EA3A0]/60 text-sm focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA] transition-all"
                       />
                     </div>
                   </div>
@@ -215,7 +219,7 @@ export const Profile = () => {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all disabled:opacity-50"
+                  className="px-6 py-3 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-lg shadow-[#20B2AA]/20 transition-all disabled:opacity-50 hover:-translate-y-0.5"
                 >
                   {saving ? 'Saving changes...' : 'Save Profile Changes'}
                 </button>

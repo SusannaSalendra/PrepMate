@@ -32,33 +32,33 @@ export const Navbar = () => {
   };
 
   const navLinkStyle = ({ isActive }) =>
-    `flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+    `flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all duration-200 ${
       isActive
-        ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30'
-        : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+        ? 'bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/35 shadow-sm'
+        : 'text-charcoal-400 hover:text-charcoal-50 hover:bg-charcoal-850'
     }`;
 
   const mobileNavLinkStyle = ({ isActive }) =>
-    `flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all ${
+    `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
       isActive
-        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30'
-        : 'text-slate-300 hover:text-white hover:bg-slate-800'
+        ? 'bg-[#20B2AA] text-[#0D1614] font-semibold shadow-md shadow-[#20B2AA]/20'
+        : 'text-charcoal-400 hover:text-white hover:bg-charcoal-850'
     }`;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-[#20B2AA]/15 bg-[#0D1614]/85 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform">
-              <BrainCircuit className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#20B2AA] to-[#0E6E68] flex items-center justify-center shadow-md shadow-[#20B2AA]/20 group-hover:scale-105 transition-transform">
+              <BrainCircuit className="w-5 h-5 text-[#0D1614]" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-extrabold bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent tracking-tight">
+              <span className="text-xl font-bold bg-gradient-to-r from-[#F9FBFB] via-[#20B2AA] to-[#3FD1C7] bg-clip-text text-transparent font-display tracking-tight">
                 PrepMate
               </span>
-              <span className="text-[10px] font-semibold text-indigo-400 uppercase tracking-widest -mt-1">
+              <span className="text-[9px] font-semibold text-[#20B2AA] uppercase tracking-widest -mt-1 font-mono">
                 Interview Prep
               </span>
             </div>
@@ -67,28 +67,28 @@ export const Navbar = () => {
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex items-center gap-1.5">
             <NavLink to="/questions" className={navLinkStyle}>
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-4 h-4 text-[#20B2AA]" />
               <span>Questions</span>
             </NavLink>
 
             <NavLink to="/mock-interview" className={navLinkStyle}>
-              <PlayCircle className="w-4 h-4 text-emerald-400" />
+              <PlayCircle className="w-4 h-4 text-[#20B2AA]" />
               <span>Mock Interview</span>
             </NavLink>
 
             <NavLink
               to="/ai-mentor"
               className={({ isActive }) =>
-                `flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                `flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-gradient-to-r from-indigo-600/30 to-purple-600/30 text-indigo-300 border border-indigo-500/40 shadow-md shadow-indigo-500/10'
-                    : 'text-indigo-300 hover:text-white hover:bg-indigo-950/40 border border-indigo-500/20'
+                    ? 'bg-[#20B2AA]/20 text-[#3FD1C7] border border-[#20B2AA]/40 shadow-sm'
+                    : 'text-[#3FD1C7] hover:text-white hover:bg-charcoal-850 border border-[#20B2AA]/25'
                 }`
               }
             >
-              <Bot className="w-4 h-4 text-purple-400 animate-pulse" />
+              <Bot className="w-4 h-4 text-[#20B2AA]" />
               <span>AI Voice Mentor</span>
-              <span className="px-1.5 py-0.2 rounded-md text-[9px] font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-sm">
+              <span className="px-1.5 py-0.2 rounded-md text-[9px] font-bold bg-[#20B2AA]/25 text-[#3FD1C7] border border-[#20B2AA]/30">
                 VOICE
               </span>
             </NavLink>
@@ -96,37 +96,37 @@ export const Navbar = () => {
             {isAuthenticated && (
               <>
                 <NavLink to="/bookmarks" className={navLinkStyle}>
-                  <Bookmark className="w-4 h-4 text-amber-400" />
+                  <Bookmark className="w-4 h-4 text-[#20B2AA]" />
                   <span>Bookmarks</span>
                 </NavLink>
 
                 <NavLink to="/sessions" className={navLinkStyle}>
-                  <History className="w-4 h-4 text-cyan-400" />
+                  <History className="w-4 h-4 text-[#20B2AA]" />
                   <span>History</span>
                 </NavLink>
 
                 <NavLink to="/dashboard" className={navLinkStyle}>
-                  <BarChart3 className="w-4 h-4 text-purple-400" />
+                  <BarChart3 className="w-4 h-4 text-[#20B2AA]" />
                   <span>Dashboard</span>
                 </NavLink>
 
                 {isAdmin && (
                   <div className="relative group ml-1">
-                    <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 hover:bg-amber-500/20 transition-all">
+                    <button className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold bg-[#20B2AA]/10 text-[#3FD1C7] border border-[#20B2AA]/30 hover:bg-[#20B2AA]/20 transition-all">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Admin</span>
                     </button>
                     <div className="absolute right-0 top-full pt-2 hidden group-hover:block w-48 z-50">
-                      <div className="p-1 rounded-xl bg-slate-900 border border-slate-800 shadow-2xl shadow-black/80 space-y-1">
+                      <div className="p-1 rounded-xl bg-charcoal-850 border border-[#20B2AA]/20 shadow-2xl shadow-black/80 space-y-1">
                         <Link
                           to="/admin/questions"
-                          className="block px-3 py-2 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
+                          className="block px-3 py-2 text-xs font-medium text-charcoal-400 hover:text-white hover:bg-charcoal-800 rounded-lg"
                         >
                           Manage Questions
                         </Link>
                         <Link
                           to="/admin/categories"
-                          className="block px-3 py-2 text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg"
+                          className="block px-3 py-2 text-xs font-medium text-charcoal-400 hover:text-white hover:bg-charcoal-800 rounded-lg"
                         >
                           Manage Categories
                         </Link>
@@ -144,23 +144,23 @@ export const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2.5 p-1.5 pl-3 rounded-full bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all"
+                  className="flex items-center gap-2.5 p-1.5 pl-3 rounded-full bg-charcoal-850 border border-[#20B2AA]/20 hover:border-[#20B2AA]/40 transition-all"
                 >
-                  <span className="text-sm font-medium text-slate-200">
+                  <span className="text-xs font-medium text-charcoal-100">
                     {user?.name}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-inner">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#20B2AA] to-[#0E6E68] flex items-center justify-center text-[#0D1614] font-bold text-xs shadow-inner">
                     {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
                   </div>
                 </button>
 
                 {/* Dropdown Menu */}
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-56 p-1.5 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl shadow-black/80 z-50 animate-in fade-in zoom-in-95 duration-100">
-                    <div className="px-3 py-2.5 border-b border-slate-800/80 mb-1">
-                      <p className="text-xs font-medium text-slate-400">Signed in as</p>
-                      <p className="text-sm font-semibold text-slate-200 truncate">{user?.email}</p>
-                      <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <div className="absolute right-0 mt-2 w-56 p-1.5 rounded-2xl bg-charcoal-850 border border-[#20B2AA]/20 shadow-2xl shadow-black/80 z-50 animate-in fade-in zoom-in-95 duration-100">
+                    <div className="px-3 py-2.5 border-b border-[#20B2AA]/15 mb-1">
+                      <p className="text-[11px] font-medium text-charcoal-400">Signed in as</p>
+                      <p className="text-xs font-semibold text-charcoal-50 truncate">{user?.email}</p>
+                      <span className="inline-block mt-1 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/30">
                         {user?.role}
                       </span>
                     </div>
@@ -168,26 +168,26 @@ export const Navbar = () => {
                     <Link
                       to="/profile"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl"
+                      className="flex items-center gap-2 px-3 py-2 text-xs text-charcoal-200 hover:text-white hover:bg-charcoal-800 rounded-xl"
                     >
-                      <User className="w-4 h-4" />
+                      <User className="w-3.5 h-3.5 text-[#20B2AA]" />
                       <span>My Profile</span>
                     </Link>
 
                     <Link
                       to="/dashboard"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-800 rounded-xl"
+                      className="flex items-center gap-2 px-3 py-2 text-xs text-charcoal-200 hover:text-white hover:bg-charcoal-800 rounded-xl"
                     >
-                      <BarChart3 className="w-4 h-4" />
+                      <BarChart3 className="w-3.5 h-3.5 text-[#20B2AA]" />
                       <span>Analytics Dashboard</span>
                     </Link>
 
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl mt-1 transition-colors"
+                      className="w-full flex items-center gap-2 px-3 py-2 text-xs text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl mt-1 transition-colors"
                     >
-                      <LogOut className="w-4 h-4" />
+                      <LogOut className="w-3.5 h-3.5" />
                       <span>Log Out</span>
                     </button>
                   </div>
@@ -197,15 +197,15 @@ export const Navbar = () => {
               <div className="flex items-center gap-2.5">
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                  className="px-3.5 py-1.5 text-xs font-medium text-charcoal-400 hover:text-white transition-colors"
                 >
                   Log In
                 </Link>
                 <Link
                   to="/register"
-                  className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 rounded-xl shadow-lg shadow-indigo-500/25 transition-all"
+                  className="flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-[#0D1614] bg-gradient-to-r from-[#20B2AA] to-[#3FD1C7] hover:from-[#3FD1C7] hover:to-[#20B2AA] rounded-xl shadow-md shadow-[#20B2AA]/20 transition-all hover:scale-[1.02]"
                 >
-                  <Sparkles className="w-4 h-4" />
+                  <Sparkles className="w-3.5 h-3.5" />
                   <span>Get Started</span>
                 </Link>
               </div>
@@ -216,9 +216,9 @@ export const Navbar = () => {
           <div className="flex md:hidden items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800"
+              className="p-2 rounded-xl text-charcoal-400 hover:text-white hover:bg-charcoal-850"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -226,13 +226,13 @@ export const Navbar = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-800 bg-slate-950 px-4 pt-2 pb-6 space-y-2">
+        <div className="md:hidden border-b border-[#20B2AA]/20 bg-[#0D1614] px-4 pt-2 pb-6 space-y-2">
           <NavLink
             to="/questions"
             onClick={() => setMobileMenuOpen(false)}
             className={mobileNavLinkStyle}
           >
-            <BookOpen className="w-5 h-5" />
+            <BookOpen className="w-4 h-4" />
             <span>Question Bank</span>
           </NavLink>
 
@@ -241,7 +241,7 @@ export const Navbar = () => {
             onClick={() => setMobileMenuOpen(false)}
             className={mobileNavLinkStyle}
           >
-            <PlayCircle className="w-5 h-5 text-emerald-400" />
+            <PlayCircle className="w-4 h-4" />
             <span>Mock Interview</span>
           </NavLink>
 
@@ -249,17 +249,17 @@ export const Navbar = () => {
             to="/ai-mentor"
             onClick={() => setMobileMenuOpen(false)}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold transition-all ${
+              `flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                 isActive
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
-                  : 'text-indigo-300 hover:text-white hover:bg-slate-800 border border-indigo-500/20'
+                  ? 'bg-[#20B2AA] text-[#0D1614]'
+                  : 'text-[#3FD1C7] hover:bg-charcoal-850 border border-[#20B2AA]/25'
               }`
             }
           >
-            <Bot className="w-5 h-5 text-purple-400" />
+            <Bot className="w-4 h-4" />
             <span>AI Voice Mentor</span>
-            <span className="ml-auto px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-              VOICE AI
+            <span className="ml-auto px-2 py-0.5 rounded-full text-[9px] font-bold bg-[#20B2AA]/20 text-[#3FD1C7] border border-[#20B2AA]/30">
+              VOICE
             </span>
           </NavLink>
 
@@ -270,7 +270,7 @@ export const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={mobileNavLinkStyle}
               >
-                <Bookmark className="w-5 h-5 text-amber-400" />
+                <Bookmark className="w-4 h-4" />
                 <span>My Bookmarks</span>
               </NavLink>
 
@@ -279,7 +279,7 @@ export const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={mobileNavLinkStyle}
               >
-                <History className="w-5 h-5 text-cyan-400" />
+                <History className="w-4 h-4" />
                 <span>Session History</span>
               </NavLink>
 
@@ -288,7 +288,7 @@ export const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={mobileNavLinkStyle}
               >
-                <BarChart3 className="w-5 h-5 text-purple-400" />
+                <BarChart3 className="w-4 h-4" />
                 <span>Progress Dashboard</span>
               </NavLink>
 
@@ -297,26 +297,26 @@ export const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={mobileNavLinkStyle}
               >
-                <User className="w-5 h-5" />
+                <User className="w-4 h-4" />
                 <span>Profile ({user?.name})</span>
               </NavLink>
 
               {isAdmin && (
-                <div className="pt-2 border-t border-slate-800">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 px-3 py-1">
+                <div className="pt-2 border-t border-[#20B2AA]/15">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-charcoal-400 px-3 py-1">
                     Admin Tools
                   </p>
                   <Link
                     to="/admin/questions"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-4 py-2 text-sm text-amber-400 hover:bg-slate-800 rounded-lg"
+                    className="block px-4 py-2 text-xs text-[#3FD1C7] hover:bg-charcoal-850 rounded-lg"
                   >
                     Manage Questions
                   </Link>
                   <Link
                     to="/admin/categories"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-4 py-2 text-sm text-amber-400 hover:bg-slate-800 rounded-lg"
+                    className="block px-4 py-2 text-xs text-[#3FD1C7] hover:bg-charcoal-850 rounded-lg"
                   >
                     Manage Categories
                   </Link>
@@ -325,27 +325,27 @@ export const Navbar = () => {
 
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-red-400 hover:bg-red-500/10 transition-all mt-4"
+                className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-red-400 hover:bg-red-500/10 transition-all mt-3"
               >
-                <LogOut className="w-5 h-5" />
+                <LogOut className="w-4 h-4" />
                 <span>Log Out</span>
               </button>
             </>
           ) : (
-            <div className="pt-4 border-t border-slate-800 flex flex-col gap-2">
+            <div className="pt-4 border-t border-[#20B2AA]/15 flex flex-col gap-2">
               <Link
                 to="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 text-center rounded-xl bg-slate-900 border border-slate-800 text-slate-200 font-medium"
+                className="w-full py-2.5 text-center rounded-xl bg-charcoal-850 border border-[#20B2AA]/20 text-charcoal-100 text-xs font-medium"
               >
                 Log In
               </Link>
               <Link
                 to="/register"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 text-center rounded-xl bg-indigo-600 text-white font-semibold shadow-lg shadow-indigo-500/30"
+                className="w-full py-2.5 text-center rounded-xl bg-gradient-to-r from-[#20B2AA] to-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-md shadow-[#20B2AA]/20"
               >
-                Create Account
+                Create Free Account
               </Link>
             </div>
           )}

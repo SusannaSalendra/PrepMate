@@ -8,21 +8,15 @@ import {
   Bot,
   BrainCircuit,
   MessageSquare,
-  Play,
   Pause,
-  RotateCcw,
   CheckCircle2,
   Lightbulb,
   Award,
   ChevronRight,
   TrendingUp,
-  AlertCircle,
   HelpCircle,
-  Settings,
   Send,
   User,
-  ShieldAlert,
-  ArrowRight,
 } from 'lucide-react';
 import api from '../api/axios';
 import {
@@ -35,10 +29,9 @@ import {
 } from '../utils/speechUtils';
 
 export const AiMentor = () => {
-  // Mode selection: 'interview' (Virtual Interview Simulator) | 'chat' (AI Mentor Voice Q&A)
   const [activeTab, setActiveTab] = useState('interview');
 
-  // Personas
+  // Personas with monochromatic sea-green styling
   const personas = [
     {
       id: 'alex',
@@ -46,9 +39,8 @@ export const AiMentor = () => {
       role: 'Principal Systems Architect',
       company: 'Ex-Google & Meta',
       specialty: 'Algorithms, Data Structures & Distributed Systems',
-      gradient: 'from-indigo-600 to-cyan-500',
-      tagColor: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
-      avatarBg: 'bg-indigo-600',
+      gradient: 'from-[#20B2AA] to-[#0E6E68]',
+      tagColor: 'bg-[#20B2AA]/15 text-[#3FD1C7] border-[#20B2AA]/30',
     },
     {
       id: 'sophia',
@@ -56,19 +48,17 @@ export const AiMentor = () => {
       role: 'Staff Frontend Architect',
       company: 'Ex-Airbnb & Vercel',
       specialty: 'React, Performance, Web APIs & System Architecture',
-      gradient: 'from-pink-600 to-purple-600',
-      tagColor: 'bg-pink-500/20 text-pink-300 border-pink-500/30',
-      avatarBg: 'bg-pink-600',
+      gradient: 'from-[#3FD1C7] to-[#17847E]',
+      tagColor: 'bg-[#20B2AA]/15 text-[#3FD1C7] border-[#20B2AA]/30',
     },
     {
       id: 'marcus',
       name: 'Marcus Vance',
       role: 'Director of Engineering',
       company: 'Ex-Stripe',
-      specialty: 'Behavioral Leadership, STAR Method & Large Scale Systems',
-      gradient: 'from-amber-500 to-orange-600',
-      tagColor: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-      avatarBg: 'bg-amber-600',
+      specialty: 'Behavioral Leadership, STAR Method & Reliability',
+      gradient: 'from-[#17847E] to-[#0F4A46]',
+      tagColor: 'bg-[#20B2AA]/15 text-[#3FD1C7] border-[#20B2AA]/30',
     },
     {
       id: 'elena',
@@ -76,9 +66,8 @@ export const AiMentor = () => {
       role: 'Senior Full-Stack Mentor',
       company: 'Tech Career Coach',
       specialty: 'Clear Code Design, Mock Prep & Confidence Building',
-      gradient: 'from-emerald-500 to-teal-600',
-      tagColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
-      avatarBg: 'bg-emerald-600',
+      gradient: 'from-[#20B2AA] to-[#072B28]',
+      tagColor: 'bg-[#20B2AA]/15 text-[#3FD1C7] border-[#20B2AA]/30',
     },
   ];
 
@@ -94,8 +83,6 @@ export const AiMentor = () => {
   const [isListening, setIsListening] = useState(false);
   const [speechRate, setSpeechRate] = useState(1.0);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
-  const [sttSupported, setSttSupported] = useState(true);
-  const [ttsSupported, setTtsSupported] = useState(true);
 
   // Candidate Response State
   const [candidateText, setCandidateText] = useState('');
@@ -114,7 +101,7 @@ export const AiMentor = () => {
   const [chatMessages, setChatMessages] = useState([
     {
       sender: 'mentor',
-      text: `Hello! I'm ${personas[0].name}. Welcome to your AI Mentor Virtual Interview studio. You can speak to me with your microphone or type your questions. Ask me about system design trade-offs, algorithm optimizations, or practice your behavioral STAR responses!`,
+      text: `Hello! I'm ${personas[0].name}. Welcome to your AI Mentor Virtual Interview studio. Speak with your microphone or type questions. Ask me about system design trade-offs, algorithm optimizations, or practice your behavioral STAR responses!`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
@@ -123,12 +110,6 @@ export const AiMentor = () => {
 
   const recognizerRef = useRef(null);
   const chatBottomRef = useRef(null);
-
-  // Check Web Speech API capabilities on mount
-  useEffect(() => {
-    setSttSupported(isSpeechRecognitionSupported());
-    setTtsSupported(isSpeechSynthesisSupported());
-  }, []);
 
   // Fetch curated questions from backend
   useEffect(() => {
@@ -171,7 +152,7 @@ export const AiMentor = () => {
         setIsListening(false);
         setInterimText('');
       },
-      onError: (err) => {
+      onError: () => {
         setIsListening(false);
         setInterimText('');
       },
@@ -391,22 +372,22 @@ export const AiMentor = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Top Banner & Mode Toggle */}
-      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#20B2AA]/15">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-2">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/30 text-[#3FD1C7] text-xs font-semibold mb-2">
+            <Sparkles className="w-3.5 h-3.5 text-[#20B2AA]" />
             <span>Real-time Voice AI Mentor & Virtual Interviewer</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-display font-medium text-white tracking-tight">
             AI Virtual Interview & Mentor Studio
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400 mt-1">
-            Practice real-time interactive technical interviews with voice synthesis, instant AI scoring, and personalized mentorship.
+          <p className="text-xs sm:text-sm text-charcoal-400 mt-1">
+            Practice real-time interactive technical interviews with voice synthesis, instant Big-O scoring, and personalized mentorship.
           </p>
         </div>
 
         {/* Tab Controls */}
-        <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-900 border border-slate-800 shadow-inner">
+        <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-charcoal-850 border border-[#20B2AA]/15 shadow-inner">
           <button
             onClick={() => {
               stopSpeaking();
@@ -414,8 +395,8 @@ export const AiMentor = () => {
             }}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'interview'
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#20B2AA] text-[#0D1614] shadow-md shadow-[#20B2AA]/20'
+                : 'text-charcoal-400 hover:text-white'
             }`}
           >
             <BrainCircuit className="w-4 h-4" />
@@ -429,8 +410,8 @@ export const AiMentor = () => {
             }}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'chat'
-                ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'bg-[#20B2AA] text-[#0D1614] shadow-md shadow-[#20B2AA]/20'
+                : 'text-charcoal-400 hover:text-white'
             }`}
           >
             <MessageSquare className="w-4 h-4" />
@@ -441,7 +422,7 @@ export const AiMentor = () => {
 
       {/* Persona Selection Bar */}
       <div className="mb-8">
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+        <label className="block text-xs font-bold uppercase tracking-wider text-charcoal-400 mb-3 font-mono">
           Select Your AI Interviewer Persona:
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -457,29 +438,26 @@ export const AiMentor = () => {
                 }}
                 className={`p-4 rounded-2xl border text-left transition-all relative overflow-hidden ${
                   isSelected
-                    ? 'bg-slate-900/90 border-indigo-500 ring-2 ring-indigo-500/40 shadow-xl shadow-indigo-500/10'
-                    : 'bg-slate-900/40 border-slate-800/80 hover:bg-slate-900 hover:border-slate-700'
+                    ? 'bg-charcoal-850 border-[#20B2AA] ring-1 ring-[#20B2AA]/40 shadow-xl shadow-[#20B2AA]/10'
+                    : 'bg-charcoal-900 border-[#20B2AA]/15 hover:bg-charcoal-850 hover:border-[#20B2AA]/30'
                 }`}
               >
-                {isSelected && (
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-indigo-500/20 to-transparent pointer-events-none" />
-                )}
                 <div className="flex items-center gap-3 mb-2">
                   <div
-                    className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${persona.gradient} flex items-center justify-center text-white font-bold text-sm shadow-md`}
+                    className={`w-9 h-9 rounded-xl bg-gradient-to-tr ${persona.gradient} flex items-center justify-center text-[#0D1614] font-bold text-sm shadow`}
                   >
                     {persona.name.charAt(0)}
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white leading-tight">
+                    <h4 className="text-xs sm:text-sm font-bold font-display text-white leading-tight">
                       {persona.name}
                     </h4>
-                    <p className="text-[11px] text-indigo-400 font-medium">
+                    <p className="text-[10px] text-[#3FD1C7] font-medium">
                       {persona.company}
                     </p>
                   </div>
                 </div>
-                <p className="text-xs text-slate-400 line-clamp-2 mt-1">
+                <p className="text-[11px] text-charcoal-400 line-clamp-2 mt-1">
                   {persona.specialty}
                 </p>
               </button>
@@ -489,18 +467,18 @@ export const AiMentor = () => {
       </div>
 
       {/* Global Voice Controls Bar */}
-      <div className="p-3.5 rounded-2xl glass-panel border border-slate-800 mb-8 flex flex-wrap items-center justify-between gap-4">
+      <div className="p-3.5 rounded-2xl glass-panel border border-[#20B2AA]/15 mb-8 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div
             className={`w-3 h-3 rounded-full ${
               isAiSpeaking
-                ? 'bg-emerald-400 animate-ping'
+                ? 'bg-[#3FD1C7] animate-ping'
                 : isListening
-                ? 'bg-rose-400 animate-pulse'
-                : 'bg-slate-500'
+                ? 'bg-[#20B2AA] animate-pulse'
+                : 'bg-charcoal-600'
             }`}
           />
-          <span className="text-xs font-semibold text-slate-300">
+          <span className="text-xs font-semibold text-charcoal-200 font-mono">
             Status:{' '}
             <span className="text-white font-bold">
               {isAiSpeaking
@@ -521,16 +499,16 @@ export const AiMentor = () => {
             }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
               voiceEnabled
-                ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30'
-                : 'bg-slate-800 text-slate-400 border-slate-700'
+                ? 'bg-[#20B2AA]/15 text-[#3FD1C7] border-[#20B2AA]/30'
+                : 'bg-charcoal-850 text-charcoal-400 border-charcoal-700'
             }`}
           >
-            {voiceEnabled ? <Volume2 className="w-4 h-4 text-indigo-400" /> : <VolumeX className="w-4 h-4 text-slate-500" />}
+            {voiceEnabled ? <Volume2 className="w-4 h-4 text-[#20B2AA]" /> : <VolumeX className="w-4 h-4 text-charcoal-400" />}
             <span>Voice Audio: {voiceEnabled ? 'ON' : 'MUTED'}</span>
           </button>
 
           {/* Speech Rate Control */}
-          <div className="flex items-center gap-1 text-xs text-slate-400">
+          <div className="flex items-center gap-1 text-xs text-charcoal-400">
             <span>Speed:</span>
             {[0.9, 1.0, 1.2].map((rate) => (
               <button
@@ -538,8 +516,8 @@ export const AiMentor = () => {
                 onClick={() => setSpeechRate(rate)}
                 className={`px-2 py-1 rounded-lg font-mono text-[11px] font-semibold transition-all ${
                   speechRate === rate
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-slate-800 text-slate-400 hover:text-white'
+                    ? 'bg-[#20B2AA] text-[#0D1614]'
+                    : 'bg-charcoal-850 text-charcoal-400 hover:text-white'
                 }`}
               >
                 {rate}x
@@ -549,28 +527,25 @@ export const AiMentor = () => {
         </div>
       </div>
 
-      {/* ========================================================================= */}
       {/* TAB 1: VIRTUAL INTERVIEW SIMULATOR */}
-      {/* ========================================================================= */}
       {activeTab === 'interview' && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Column: Virtual Interview Stage (8 cols) */}
           <div className="lg:col-span-8 space-y-6">
             {/* Question Stage Card */}
-            <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl relative overflow-hidden">
-              {/* Question Header & Action */}
+            <div className="glass-card rounded-2xl p-6 sm:p-8 border border-[#20B2AA]/15 shadow-2xl relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                 <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-xl text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <span className="px-3 py-0.5 rounded-xl text-xs font-bold bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/30">
                     Question {currentQIndex + 1} of {interviewQuestions.length || 1}
                   </span>
                   {currentQuestion?.difficulty && (
-                    <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-charcoal-850 text-charcoal-200 border border-[#20B2AA]/15">
                       {currentQuestion.difficulty}
                     </span>
                   )}
                   {currentQuestion?.company && (
-                    <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#20B2AA]/10 text-[#3FD1C7] border border-[#20B2AA]/20">
                       {currentQuestion.company}
                     </span>
                   )}
@@ -579,35 +554,35 @@ export const AiMentor = () => {
                 <button
                   onClick={handleReadCurrentQuestion}
                   disabled={!voiceEnabled}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-cyan-300 transition-all active:scale-95 disabled:opacity-50"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 border border-[#20B2AA]/20 text-xs font-semibold text-[#3FD1C7] transition-all disabled:opacity-50"
                   title="Ask AI Interviewer to read question aloud"
                 >
-                  <Volume2 className="w-4 h-4 text-cyan-400" />
+                  <Volume2 className="w-4 h-4 text-[#20B2AA]" />
                   <span>Read Aloud</span>
                 </button>
               </div>
 
               {/* Question Title */}
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug mb-4">
+              <h2 className="text-xl sm:text-2xl font-display font-medium text-white tracking-tight leading-snug mb-4">
                 {currentQuestion?.title || 'Loading next interview problem...'}
               </h2>
 
               {/* AI Avatar Speaking Wave Visualizer */}
               {isAiSpeaking && (
-                <div className="mb-6 p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 flex items-center gap-4 animate-in fade-in">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white font-bold shrink-0 shadow-lg shadow-indigo-500/30 animate-pulse">
+                <div className="mb-6 p-4 rounded-2xl bg-[#081A18] border border-[#20B2AA]/30 flex items-center gap-4 animate-in fade-in">
+                  <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#20B2AA] to-[#0E6E68] flex items-center justify-center text-[#0D1614] font-bold shrink-0 shadow-lg shadow-[#20B2AA]/20 animate-pulse">
                     <Bot className="w-6 h-6" />
                   </div>
                   <div className="flex-grow">
-                    <p className="text-xs font-bold text-indigo-300 mb-1">
+                    <p className="text-xs font-bold text-[#3FD1C7] mb-1">
                       {selectedPersona.name} is speaking...
                     </p>
-                    {/* Animated Audio Wave Bars */}
+                    {/* Animated Audio Wave Bars in Sea Green */}
                     <div className="flex items-center gap-1.5 h-6">
                       {[18, 28, 14, 32, 22, 36, 16, 30, 24, 18, 32, 20].map((h, i) => (
                         <div
                           key={i}
-                          className="w-1 rounded-full bg-gradient-to-t from-indigo-500 to-cyan-400 animate-pulse"
+                          className="w-1 rounded-full bg-gradient-to-t from-[#20B2AA] to-[#3FD1C7] animate-pulse"
                           style={{
                             height: `${h}px`,
                             animationDelay: `${i * 80}ms`,
@@ -619,9 +594,9 @@ export const AiMentor = () => {
                   </div>
                   <button
                     onClick={stopSpeaking}
-                    className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+                    className="p-2 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 text-charcoal-200 text-xs font-semibold"
                   >
-                    <Pause className="w-4 h-4" />
+                    <Pause className="w-4 h-4 text-[#20B2AA]" />
                   </button>
                 </div>
               )}
@@ -629,17 +604,17 @@ export const AiMentor = () => {
               {/* Candidate Voice / Text Area */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-charcoal-200 flex items-center gap-2 font-mono">
                     <span>Your Spoken Answer / Explanation:</span>
                     {isListening && (
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30 animate-pulse">
-                        <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-                        LIVE MIC RECORDING
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#20B2AA]/20 text-[#3FD1C7] border border-[#20B2AA]/30 animate-pulse">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#20B2AA]" />
+                        RECORDING
                       </span>
                     )}
                   </label>
-                  <span className="text-xs text-slate-500">
-                    {candidateText.split(/\s+/).filter(Boolean).length} words spoken
+                  <span className="text-xs text-charcoal-400 font-mono">
+                    {candidateText.split(/\s+/).filter(Boolean).length} words
                   </span>
                 </div>
 
@@ -649,34 +624,34 @@ export const AiMentor = () => {
                     value={candidateText + (interimText ? ` ${interimText}...` : '')}
                     onChange={(e) => setCandidateText(e.target.value)}
                     placeholder="Click the microphone below to speak your technical answer, algorithm complexity, and architecture details, or type here directly..."
-                    className={`w-full p-4 rounded-2xl bg-slate-950/80 border text-white placeholder-slate-600 text-sm font-sans focus:outline-none transition-all resize-y ${
+                    className={`w-full p-4 rounded-2xl bg-charcoal-900 border text-white placeholder-charcoal-400 text-xs sm:text-sm font-sans focus:outline-none transition-all resize-y ${
                       isListening
-                        ? 'border-rose-500 ring-2 ring-rose-500/30 bg-rose-950/10'
-                        : 'border-slate-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500'
+                        ? 'border-[#20B2AA] ring-2 ring-[#20B2AA]/30 bg-[#081A18]'
+                        : 'border-[#20B2AA]/20 focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA]'
                     }`}
                   />
                 </div>
 
                 {/* Candidate Microphone Interactive Control Deck */}
-                <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-4 shadow-inner">
+                <div className="p-4 rounded-2xl bg-charcoal-850 border border-[#20B2AA]/15 flex flex-wrap items-center justify-between gap-4 shadow-inner">
                   {/* Big Voice Button */}
                   <button
                     type="button"
                     onClick={handleToggleMic}
-                    className={`flex items-center gap-3 px-6 py-3.5 rounded-2xl font-extrabold text-sm shadow-xl transition-all active:scale-95 ${
+                    className={`flex items-center gap-2.5 px-6 py-3 rounded-xl font-bold text-xs shadow-lg transition-all active:scale-95 ${
                       isListening
-                        ? 'bg-gradient-to-r from-rose-600 to-red-600 text-white shadow-rose-600/30 animate-pulse'
-                        : 'bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white shadow-indigo-600/30 hover:scale-[1.02]'
+                        ? 'bg-[#0E6E68] text-white border border-[#20B2AA] animate-pulse shadow-[#20B2AA]/20'
+                        : 'bg-gradient-to-r from-[#20B2AA] to-[#3FD1C7] text-[#0D1614] shadow-[#20B2AA]/20 hover:scale-[1.02]'
                     }`}
                   >
                     {isListening ? (
                       <>
-                        <MicOff className="w-5 h-5 animate-bounce" />
-                        <span>Stop Speaking</span>
+                        <MicOff className="w-4 h-4" />
+                        <span>Stop Recording</span>
                       </>
                     ) : (
                       <>
-                        <Mic className="w-5 h-5 text-emerald-300" />
+                        <Mic className="w-4 h-4" />
                         <span>Speak Your Answer</span>
                       </>
                     )}
@@ -688,18 +663,18 @@ export const AiMentor = () => {
                       type="button"
                       onClick={handleGetHint}
                       disabled={loadingHint}
-                      className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold transition-all disabled:opacity-50"
+                      className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-[#20B2AA]/10 hover:bg-[#20B2AA]/20 text-[#3FD1C7] border border-[#20B2AA]/30 text-xs font-semibold transition-all disabled:opacity-50"
                       title="Request a progressive hint from the AI mentor"
                     >
-                      <Lightbulb className="w-4 h-4 text-amber-400" />
-                      <span>{loadingHint ? 'Thinking...' : `Get Hint (Lvl ${hintLevel})`}</span>
+                      <Lightbulb className="w-4 h-4 text-[#20B2AA]" />
+                      <span>{loadingHint ? 'Thinking...' : `Hint (Lvl ${hintLevel})`}</span>
                     </button>
 
                     <button
                       type="button"
                       onClick={() => setCandidateText('')}
                       disabled={!candidateText}
-                      className="px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white text-xs font-semibold disabled:opacity-40"
+                      className="px-3 py-2.5 rounded-xl bg-charcoal-800 hover:bg-charcoal-700 text-charcoal-400 hover:text-white text-xs font-semibold disabled:opacity-40"
                     >
                       Clear
                     </button>
@@ -708,20 +683,20 @@ export const AiMentor = () => {
                       type="button"
                       onClick={handleSubmitEvaluation}
                       disabled={isEvaluating || !candidateText.trim()}
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-extrabold shadow-lg shadow-emerald-600/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-md shadow-[#20B2AA]/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
                     >
                       <CheckCircle2 className="w-4 h-4" />
-                      <span>{isEvaluating ? 'Evaluating with AI...' : 'Submit & Evaluate'}</span>
+                      <span>{isEvaluating ? 'Evaluating...' : 'Submit & Evaluate'}</span>
                     </button>
                   </div>
                 </div>
 
                 {/* Hint Display */}
                 {hintText && (
-                  <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 text-xs leading-relaxed animate-in fade-in flex items-start gap-3">
-                    <Lightbulb className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                  <div className="p-4 rounded-2xl bg-[#081A18] border border-[#20B2AA]/30 text-charcoal-100 text-xs leading-relaxed animate-in fade-in flex items-start gap-3">
+                    <Lightbulb className="w-4 h-4 text-[#20B2AA] shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-bold text-amber-300 mb-0.5">Mentor Hint:</p>
+                      <p className="font-bold text-[#3FD1C7] mb-0.5 font-display">Mentor Hint:</p>
                       <p>{hintText}</p>
                     </div>
                   </div>
@@ -731,15 +706,14 @@ export const AiMentor = () => {
 
             {/* AI Real-time Evaluation Report */}
             {evaluationResult && (
-              <div className="glass-card rounded-3xl p-6 sm:p-8 border border-emerald-500/30 bg-slate-900/80 shadow-2xl animate-in zoom-in-95 duration-300 space-y-6">
-                {/* Score Header */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800">
+              <div className="glass-card rounded-2xl p-6 sm:p-8 border border-[#20B2AA]/30 bg-charcoal-850 shadow-2xl animate-in zoom-in-95 duration-300 space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[#20B2AA]/15">
                   <div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold mb-2">
-                      <Award className="w-3.5 h-3.5 text-emerald-400" />
+                    <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/30 text-xs font-bold mb-2">
+                      <Award className="w-3.5 h-3.5 text-[#20B2AA]" />
                       <span>AI Mentor Virtual Interview Evaluation</span>
                     </div>
-                    <h3 className="text-xl font-extrabold text-white">
+                    <h3 className="text-xl font-display font-medium text-white">
                       Performance Breakdown
                     </h3>
                   </div>
@@ -747,38 +721,38 @@ export const AiMentor = () => {
                   {/* Score Meter */}
                   <div className="flex items-center gap-3">
                     <div className="text-right">
-                      <p className="text-xs text-slate-400 font-medium">Confidence & Depth</p>
-                      <p className="text-xs text-emerald-400 font-bold">
+                      <p className="text-xs text-charcoal-400 font-medium">Confidence & Depth</p>
+                      <p className="text-xs text-[#3FD1C7] font-bold">
                         Clarity: {evaluationResult.clarityRating}
                       </p>
                     </div>
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex flex-col items-center justify-center text-white shadow-lg shadow-emerald-500/25">
-                      <span className="text-xl font-extrabold">{evaluationResult.score}</span>
-                      <span className="text-[9px] uppercase tracking-wider font-semibold">Score</span>
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#20B2AA] to-[#0E6E68] flex flex-col items-center justify-center text-[#0D1614] shadow-lg shadow-[#20B2AA]/20">
+                      <span className="text-lg font-bold font-display">{evaluationResult.score}</span>
+                      <span className="text-[8px] uppercase tracking-wider font-semibold">Score</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Spoken Feedback Quote */}
                 {evaluationResult.spokenMentorFeedback && (
-                  <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 flex items-start gap-3.5">
-                    <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold shrink-0 shadow">
-                      <Bot className="w-5 h-5" />
+                  <div className="p-4 rounded-2xl bg-charcoal-900 border border-[#20B2AA]/20 flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-xl bg-[#20B2AA] flex items-center justify-center text-[#0D1614] font-bold shrink-0 shadow">
+                      <Bot className="w-4 h-4" />
                     </div>
                     <div className="flex-grow">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-bold text-indigo-300">
+                        <span className="text-xs font-bold text-[#3FD1C7]">
                           {selectedPersona.name}'s Verbal Feedback:
                         </span>
                         <button
                           onClick={() => handleSpeakAi(evaluationResult.spokenMentorFeedback)}
-                          className="text-[11px] text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1"
+                          className="text-[11px] text-[#20B2AA] hover:text-[#3FD1C7] font-semibold flex items-center gap-1"
                         >
                           <Volume2 className="w-3.5 h-3.5" />
                           <span>Replay</span>
                         </button>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic">
+                      <p className="text-xs text-charcoal-200 leading-relaxed italic">
                         "{evaluationResult.spokenMentorFeedback}"
                       </p>
                     </div>
@@ -787,52 +761,47 @@ export const AiMentor = () => {
 
                 {/* Keywords Covered */}
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-400 mb-2.5 font-mono">
                     Core Technical Keywords Identified:
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {evaluationResult.keyConceptsCovered?.map((kw, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 rounded-xl text-xs font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/30"
+                        className="px-2.5 py-0.5 rounded-xl text-xs font-medium bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/30"
                       >
                         ✓ #{kw}
                       </span>
                     ))}
-                    {evaluationResult.keyConceptsCovered?.length === 0 && (
-                      <span className="text-xs text-slate-500 italic">
-                        No specific algorithmic keywords detected.
-                      </span>
-                    )}
                   </div>
                 </div>
 
                 {/* Strengths & Improvements Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80">
-                    <h5 className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4" />
+                  <div className="p-4 rounded-2xl bg-charcoal-900 border border-[#20B2AA]/15">
+                    <h5 className="text-xs font-bold text-[#3FD1C7] uppercase tracking-wider mb-2 flex items-center gap-1.5 font-mono">
+                      <CheckCircle2 className="w-4 h-4 text-[#20B2AA]" />
                       <span>Key Strengths</span>
                     </h5>
-                    <ul className="space-y-1.5 text-xs text-slate-300">
+                    <ul className="space-y-1.5 text-xs text-charcoal-200">
                       {evaluationResult.strengths?.map((str, idx) => (
                         <li key={idx} className="flex items-start gap-1.5">
-                          <span className="text-emerald-400 mt-0.5">•</span>
+                          <span className="text-[#20B2AA] mt-0.5">•</span>
                           <span>{str}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80">
-                    <h5 className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                      <TrendingUp className="w-4 h-4" />
-                      <span>Growth Areas & Suggestions</span>
+                  <div className="p-4 rounded-2xl bg-charcoal-900 border border-[#20B2AA]/15">
+                    <h5 className="text-xs font-bold text-charcoal-200 uppercase tracking-wider mb-2 flex items-center gap-1.5 font-mono">
+                      <TrendingUp className="w-4 h-4 text-[#20B2AA]" />
+                      <span>Growth Areas</span>
                     </h5>
-                    <ul className="space-y-1.5 text-xs text-slate-300">
+                    <ul className="space-y-1.5 text-xs text-charcoal-300">
                       {evaluationResult.areasForImprovement?.map((imp, idx) => (
                         <li key={idx} className="flex items-start gap-1.5">
-                          <span className="text-amber-400 mt-0.5">•</span>
+                          <span className="text-[#20B2AA] mt-0.5">•</span>
                           <span>{imp}</span>
                         </li>
                       ))}
@@ -842,31 +811,31 @@ export const AiMentor = () => {
 
                 {/* Follow-up Question Prompter */}
                 {evaluationResult.followUpQuestion && (
-                  <div className="p-4 rounded-2xl bg-indigo-950/30 border border-indigo-500/30">
+                  <div className="p-4 rounded-2xl bg-[#081A18] border border-[#20B2AA]/25">
                     <div className="flex items-center justify-between mb-1.5">
-                      <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider flex items-center gap-1.5">
-                        <HelpCircle className="w-4 h-4 text-indigo-400" />
-                        <span>Live Follow-Up Interview Question:</span>
+                      <span className="text-xs font-bold text-[#3FD1C7] uppercase tracking-wider flex items-center gap-1.5 font-mono">
+                        <HelpCircle className="w-4 h-4 text-[#20B2AA]" />
+                        <span>Follow-Up Interview Question:</span>
                       </span>
                       <button
                         onClick={() => handleSpeakAi(evaluationResult.followUpQuestion)}
-                        className="text-[11px] text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
+                        className="text-[11px] text-[#20B2AA] hover:text-[#3FD1C7] font-semibold flex items-center gap-1"
                       >
                         <Volume2 className="w-3.5 h-3.5" />
                         <span>Listen</span>
                       </button>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-200 font-medium">
+                    <p className="text-xs text-charcoal-100 font-medium">
                       {evaluationResult.followUpQuestion}
                     </p>
                   </div>
                 )}
 
                 {/* Next Question CTA */}
-                <div className="pt-4 border-t border-slate-800 flex items-center justify-end">
+                <div className="pt-4 border-t border-[#20B2AA]/15 flex items-center justify-end">
                   <button
                     onClick={handleNextQuestion}
-                    className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-extrabold text-xs shadow-xl shadow-indigo-600/30 active:scale-95 transition-all"
+                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#20B2AA] to-[#3FD1C7] hover:from-[#3FD1C7] hover:to-[#20B2AA] text-[#0D1614] font-bold text-xs shadow-lg shadow-[#20B2AA]/20 active:scale-95 transition-all"
                   >
                     <span>
                       {currentQIndex < interviewQuestions.length - 1
@@ -880,37 +849,37 @@ export const AiMentor = () => {
             )}
           </div>
 
-          {/* Right Column: Interview Progression & Session Summary (4 cols) */}
+          {/* Right Column: Roadmap (4 cols) */}
           <div className="lg:col-span-4 space-y-6">
             {/* AI Interviewer Profile Card */}
-            <div className="glass-card rounded-3xl p-6 border border-slate-800 text-center relative overflow-hidden">
+            <div className="glass-card rounded-2xl p-6 border border-[#20B2AA]/15 text-center relative overflow-hidden">
               <div
-                className={`w-20 h-20 rounded-3xl mx-auto mb-4 bg-gradient-to-tr ${selectedPersona.gradient} flex items-center justify-center text-white text-2xl font-extrabold shadow-2xl shadow-indigo-500/20`}
+                className={`w-16 h-16 rounded-2xl mx-auto mb-3 bg-gradient-to-tr ${selectedPersona.gradient} flex items-center justify-center text-[#0D1614] text-xl font-bold shadow-lg shadow-[#20B2AA]/20`}
               >
                 {selectedPersona.name.charAt(0)}
               </div>
-              <h3 className="text-lg font-extrabold text-white">
+              <h3 className="text-base font-display font-medium text-white">
                 {selectedPersona.name}
               </h3>
-              <p className="text-xs text-indigo-400 font-semibold mb-1">
+              <p className="text-xs text-[#3FD1C7] font-semibold mb-1">
                 {selectedPersona.role}
               </p>
-              <p className="text-[11px] text-slate-400 mb-4">{selectedPersona.company}</p>
+              <p className="text-[11px] text-charcoal-400 mb-4">{selectedPersona.company}</p>
 
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 text-left text-xs text-slate-300 leading-relaxed">
-                <span className="font-bold text-slate-200 block mb-1">Interviewing Style:</span>
+              <div className="p-3 rounded-xl bg-charcoal-900 border border-[#20B2AA]/15 text-left text-xs text-charcoal-300 leading-relaxed">
+                <span className="font-bold text-white block mb-1 font-display">Interviewing Focus:</span>
                 {selectedPersona.specialty}
               </div>
             </div>
 
             {/* Session Roadmap */}
-            <div className="glass-card rounded-3xl p-6 border border-slate-800 space-y-4">
+            <div className="glass-card rounded-2xl p-6 border border-[#20B2AA]/15 space-y-4">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Virtual Session Questions
+                <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-400 font-mono">
+                  Session Questions
                 </h4>
-                <span className="text-xs font-semibold text-indigo-400">
-                  {completedEvaluations.length} / {interviewQuestions.length} Evaluated
+                <span className="text-xs font-semibold text-[#3FD1C7] font-mono">
+                  {completedEvaluations.length} / {interviewQuestions.length} Done
                 </span>
               </div>
 
@@ -932,19 +901,19 @@ export const AiMentor = () => {
                         setEvaluationResult(null);
                         setHintText('');
                       }}
-                      className={`w-full p-3 rounded-xl border text-left text-xs flex items-center justify-between gap-2 transition-all ${
+                      className={`w-full p-2.5 rounded-xl border text-left text-xs flex items-center justify-between gap-2 transition-all ${
                         isCurrent
-                          ? 'bg-indigo-600/20 border-indigo-500 text-white font-bold ring-1 ring-indigo-500/40'
+                          ? 'bg-[#20B2AA]/20 border-[#20B2AA] text-white font-bold ring-1 ring-[#20B2AA]/40'
                           : evalItem
-                          ? 'bg-emerald-950/20 border-emerald-500/30 text-emerald-300'
-                          : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                          ? 'bg-[#081A18] border-[#20B2AA]/30 text-[#3FD1C7]'
+                          : 'bg-charcoal-850 border-[#20B2AA]/10 text-charcoal-400 hover:text-white hover:bg-charcoal-800'
                       }`}
                     >
                       <span className="truncate">
                         {idx + 1}. {q.title}
                       </span>
                       {evalItem && (
-                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-500/20 text-emerald-400 shrink-0">
+                        <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#20B2AA]/20 text-[#3FD1C7] shrink-0 font-mono">
                           {evalItem.score}%
                         </span>
                       )}
@@ -956,9 +925,9 @@ export const AiMentor = () => {
               {completedEvaluations.length > 0 && (
                 <button
                   onClick={() => setShowSummaryModal(true)}
-                  className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all mt-2"
+                  className="w-full py-2.5 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 text-charcoal-100 text-xs font-bold border border-[#20B2AA]/20 transition-all mt-2"
                 >
-                  View Full Session Scorecard
+                  View Full Scorecard
                 </button>
               )}
             </div>
@@ -966,34 +935,26 @@ export const AiMentor = () => {
         </div>
       )}
 
-      {/* ========================================================================= */}
-      {/* TAB 2: FREE-FORM AI MENTOR VOICE CHAT */}
-      {/* ========================================================================= */}
+      {/* TAB 2: FREE-FORM AI MENTOR CHAT */}
       {activeTab === 'chat' && (
         <div className="max-w-4xl mx-auto">
-          <div className="glass-card rounded-3xl border border-slate-800 shadow-2xl flex flex-col h-[650px] overflow-hidden">
+          <div className="glass-card rounded-2xl border border-[#20B2AA]/15 shadow-2xl flex flex-col h-[650px] overflow-hidden">
             {/* Chat Header */}
-            <div className="p-4 sm:p-5 border-b border-slate-800 bg-slate-950/60 flex items-center justify-between">
+            <div className="p-4 sm:p-5 border-b border-[#20B2AA]/15 bg-charcoal-900 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div
-                  className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${selectedPersona.gradient} flex items-center justify-center text-white font-bold shadow`}
+                  className={`w-9 h-9 rounded-xl bg-gradient-to-tr ${selectedPersona.gradient} flex items-center justify-center text-[#0D1614] font-bold shadow`}
                 >
                   <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white leading-tight">
+                  <h3 className="text-sm font-bold font-display text-white leading-tight">
                     {selectedPersona.name}
                   </h3>
-                  <p className="text-[11px] text-indigo-400 font-medium">
+                  <p className="text-[11px] text-[#3FD1C7] font-medium font-mono">
                     {selectedPersona.role} • Voice Mentor
                   </p>
                 </div>
-              </div>
-
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] text-slate-400">
-                  Voice feedback is {voiceEnabled ? 'Active' : 'Muted'}
-                </span>
               </div>
             </div>
 
@@ -1009,10 +970,10 @@ export const AiMentor = () => {
                     }`}
                   >
                     <div
-                      className={`w-8 h-8 rounded-xl flex items-center justify-center text-white text-xs font-bold shrink-0 ${
+                      className={`w-7 h-7 rounded-xl flex items-center justify-center text-xs font-bold shrink-0 ${
                         isUser
-                          ? 'bg-indigo-600'
-                          : `bg-gradient-to-tr ${selectedPersona.gradient}`
+                          ? 'bg-[#20B2AA] text-[#0D1614]'
+                          : `bg-gradient-to-tr ${selectedPersona.gradient} text-[#0D1614]`
                       }`}
                     >
                       {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -1021,17 +982,17 @@ export const AiMentor = () => {
                     <div
                       className={`max-w-[80%] p-4 rounded-2xl text-xs sm:text-sm leading-relaxed ${
                         isUser
-                          ? 'bg-indigo-600 text-white rounded-tr-none shadow-md'
-                          : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-none shadow-md'
+                          ? 'bg-[#20B2AA] text-[#0D1614] font-medium rounded-tr-none shadow-md'
+                          : 'bg-charcoal-850 border border-[#20B2AA]/20 text-charcoal-100 rounded-tl-none shadow-md'
                       }`}
                     >
                       <p>{msg.text}</p>
-                      <div className="flex items-center justify-between gap-4 mt-2 pt-2 border-t border-white/10 text-[10px] opacity-70">
-                        <span>{msg.timestamp}</span>
+                      <div className="flex items-center justify-between gap-4 mt-2 pt-2 border-t border-black/10 text-[10px] opacity-70">
+                        <span className="font-mono">{msg.timestamp}</span>
                         {!isUser && (
                           <button
                             onClick={() => handleSpeakAi(msg.text)}
-                            className="hover:opacity-100 flex items-center gap-1 font-semibold text-cyan-400"
+                            className="hover:opacity-100 flex items-center gap-1 font-semibold text-[#3FD1C7]"
                           >
                             <Volume2 className="w-3 h-3" />
                             <span>Listen</span>
@@ -1046,13 +1007,13 @@ export const AiMentor = () => {
               {chatLoading && (
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-8 h-8 rounded-xl bg-gradient-to-tr ${selectedPersona.gradient} flex items-center justify-center text-white text-xs font-bold`}
+                    className={`w-7 h-7 rounded-xl bg-gradient-to-tr ${selectedPersona.gradient} flex items-center justify-center text-[#0D1614] text-xs font-bold`}
                   >
                     <Bot className="w-4 h-4" />
                   </div>
-                  <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-slate-400 text-xs flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
-                    <span>{selectedPersona.name} is composing advice...</span>
+                  <div className="p-3.5 rounded-2xl bg-charcoal-850 border border-[#20B2AA]/15 text-charcoal-300 text-xs flex items-center gap-2 font-mono">
+                    <span className="w-2 h-2 rounded-full bg-[#20B2AA] animate-ping" />
+                    <span>{selectedPersona.name} is formulating advice...</span>
                   </div>
                 </div>
               )}
@@ -1060,8 +1021,8 @@ export const AiMentor = () => {
             </div>
 
             {/* Quick Suggestion Chips */}
-            <div className="px-4 py-2 bg-slate-950/40 border-t border-slate-800 flex items-center gap-2 overflow-x-auto text-[11px] text-slate-300">
-              <span className="text-slate-500 font-semibold shrink-0">Prompts:</span>
+            <div className="px-4 py-2 bg-charcoal-900 border-t border-[#20B2AA]/15 flex items-center gap-2 overflow-x-auto text-[11px]">
+              <span className="text-charcoal-400 font-semibold shrink-0 font-mono">Prompts:</span>
               {[
                 'Explain LRU Cache design with Hash Map & Doubly Linked List',
                 'How do I answer "Tell me about yourself" using STAR?',
@@ -1070,10 +1031,8 @@ export const AiMentor = () => {
               ].map((promptText, i) => (
                 <button
                   key={i}
-                  onClick={() => {
-                    setChatInput(promptText);
-                  }}
-                  className="px-3 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 whitespace-nowrap hover:text-white transition-all"
+                  onClick={() => setChatInput(promptText)}
+                  className="px-3 py-1 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 border border-[#20B2AA]/15 text-charcoal-300 whitespace-nowrap hover:text-white transition-all"
                 >
                   {promptText}
                 </button>
@@ -1083,19 +1042,19 @@ export const AiMentor = () => {
             {/* Chat Input Bar */}
             <form
               onSubmit={handleSendChatMessage}
-              className="p-4 bg-slate-950/80 border-t border-slate-800 flex items-center gap-3"
+              className="p-4 bg-charcoal-900 border-t border-[#20B2AA]/15 flex items-center gap-3"
             >
               <button
                 type="button"
                 onClick={handleToggleMic}
-                className={`p-3 rounded-2xl transition-all ${
+                className={`p-3 rounded-xl transition-all ${
                   isListening
-                    ? 'bg-rose-600 text-white animate-pulse'
-                    : 'bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700'
+                    ? 'bg-[#0E6E68] text-white animate-pulse'
+                    : 'bg-charcoal-850 text-charcoal-300 hover:text-white border border-[#20B2AA]/20'
                 }`}
                 title="Speak message with microphone"
               >
-                {isListening ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4 text-[#20B2AA]" />}
               </button>
 
               <input
@@ -1103,55 +1062,53 @@ export const AiMentor = () => {
                 value={chatInput + (interimText ? ` ${interimText}` : '')}
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="Ask your AI mentor anything or speak with your mic..."
-                className="flex-grow py-3 px-4 rounded-2xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                className="flex-grow py-2.5 px-4 rounded-xl bg-charcoal-850 border border-[#20B2AA]/20 text-white placeholder-charcoal-400 text-xs sm:text-sm focus:outline-none focus:border-[#20B2AA]"
               />
 
               <button
                 type="submit"
                 disabled={!chatInput.trim() || chatLoading}
-                className="p-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-indigo-600/30 transition-all active:scale-95"
+                className="p-2.5 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] disabled:opacity-50 disabled:cursor-not-allowed shadow-md shadow-[#20B2AA]/20 transition-all active:scale-95"
               >
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4" />
               </button>
             </form>
           </div>
         </div>
       )}
 
-      {/* ========================================================================= */}
       {/* SESSION SUMMARY REPORT MODAL */}
-      {/* ========================================================================= */}
       {showSummaryModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-700 max-w-2xl w-full bg-slate-950 max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="text-center pb-6 border-b border-slate-800">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 flex items-center justify-center text-white mx-auto mb-3 shadow-lg shadow-emerald-500/25">
-                <Award className="w-8 h-8" />
+          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-[#20B2AA]/30 max-w-2xl w-full bg-[#0D1614] max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="text-center pb-6 border-b border-[#20B2AA]/15">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#20B2AA] to-[#0E6E68] flex items-center justify-center text-[#0D1614] mx-auto mb-3 shadow-lg shadow-[#20B2AA]/20">
+                <Award className="w-7 h-7" />
               </div>
-              <h2 className="text-2xl font-extrabold text-white">
+              <h2 className="text-2xl font-display font-medium text-white">
                 Virtual Interview Performance Report
               </h2>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-charcoal-400 mt-1">
                 Conducted by AI Interviewer {selectedPersona.name}
               </p>
             </div>
 
             {/* Scorecard Gauge */}
-            <div className="my-6 p-6 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-around text-center">
+            <div className="my-6 p-6 rounded-2xl bg-charcoal-850 border border-[#20B2AA]/20 flex items-center justify-around text-center">
               <div>
-                <p className="text-3xl font-extrabold text-emerald-400">
+                <p className="text-3xl font-display font-bold text-[#20B2AA]">
                   {calculateAverageScore()}%
                 </p>
-                <p className="text-xs font-semibold text-slate-400 mt-0.5">
+                <p className="text-xs font-semibold text-charcoal-400 mt-0.5">
                   Overall Interview Score
                 </p>
               </div>
-              <div className="h-10 w-px bg-slate-800" />
+              <div className="h-10 w-px bg-[#20B2AA]/15" />
               <div>
-                <p className="text-3xl font-extrabold text-indigo-400">
+                <p className="text-3xl font-display font-bold text-[#3FD1C7]">
                   {completedEvaluations.length}
                 </p>
-                <p className="text-xs font-semibold text-slate-400 mt-0.5">
+                <p className="text-xs font-semibold text-charcoal-400 mt-0.5">
                   Questions Evaluated
                 </p>
               </div>
@@ -1159,21 +1116,21 @@ export const AiMentor = () => {
 
             {/* Question Breakdown List */}
             <div className="space-y-3 mb-6">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-charcoal-400 font-mono">
                 Detailed Question Scores:
               </h4>
               {completedEvaluations.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs"
+                  className="p-3.5 rounded-xl bg-charcoal-850 border border-[#20B2AA]/15 flex items-center justify-between text-xs"
                 >
                   <div>
-                    <p className="font-bold text-slate-200">{item.questionTitle}</p>
-                    <p className="text-[11px] text-slate-400">
-                      Clarity Rating: <span className="text-indigo-400">{item.clarity}</span>
+                    <p className="font-bold text-white font-display">{item.questionTitle}</p>
+                    <p className="text-[11px] text-charcoal-400">
+                      Clarity Rating: <span className="text-[#3FD1C7]">{item.clarity}</span>
                     </p>
                   </div>
-                  <span className="px-3 py-1 rounded-xl text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  <span className="px-3 py-1 rounded-xl text-xs font-bold bg-[#20B2AA]/20 text-[#3FD1C7] border border-[#20B2AA]/30 font-mono">
                     {item.score}%
                   </span>
                 </div>
@@ -1181,10 +1138,10 @@ export const AiMentor = () => {
             </div>
 
             {/* Modal Actions */}
-            <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+            <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#20B2AA]/15">
               <button
                 onClick={() => setShowSummaryModal(false)}
-                className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold"
+                className="px-5 py-2.5 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 text-charcoal-200 text-xs font-bold border border-[#20B2AA]/15"
               >
                 Close Report
               </button>
@@ -1196,7 +1153,7 @@ export const AiMentor = () => {
                   setCandidateText('');
                   setEvaluationResult(null);
                 }}
-                className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30"
+                className="px-5 py-2.5 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-md shadow-[#20B2AA]/25"
               >
                 Start New Simulation
               </button>

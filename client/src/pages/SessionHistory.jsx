@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { History, PlayCircle, Clock, Star, Award, CheckCircle } from 'lucide-react';
+import { History, PlayCircle, Sparkles } from 'lucide-react';
 import api from '../api/axios';
 import SessionSummaryCard from '../components/SessionSummaryCard';
 import { CardSkeleton } from '../components/Loader';
@@ -27,24 +27,28 @@ export const SessionHistory = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-6 border-b border-[#20B2AA]/15">
         <div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-            <History className="w-7 h-7 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/20 text-[#3FD1C7] text-xs font-semibold mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Interview Archives</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-display font-bold text-[#F9FBFB] tracking-tight flex items-center gap-3">
+            <History className="w-8 h-8 text-[#20B2AA]" />
             <span>Mock Session History</span>
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
-            Review your past mock interviews, scores, and performance trends
+          <p className="text-sm text-[#8EA3A0] mt-1">
+            Review your past mock interviews, scores, pacing metrics, and performance trends.
           </p>
         </div>
 
         <Link
           to="/mock-interview"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all self-start sm:self-center"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-lg shadow-[#20B2AA]/20 transition-all self-start sm:self-auto hover:-translate-y-0.5"
         >
-          <PlayCircle className="w-4 h-4 text-emerald-300" />
+          <PlayCircle className="w-4 h-4" />
           <span>Start New Session</span>
         </Link>
       </div>
@@ -59,18 +63,20 @@ export const SessionHistory = () => {
           ))}
         </div>
       ) : (
-        <div className="glass-card rounded-3xl p-12 text-center border border-slate-800">
-          <History className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <h3 className="text-lg font-bold text-white mb-1">No past sessions found</h3>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto mb-6">
-            You haven't completed any mock interviews yet. Launch your first session to build confidence and generate analytics.
+        <div className="glass-card rounded-3xl p-12 text-center border border-[#20B2AA]/15 max-w-xl mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-[#20B2AA]/10 border border-[#20B2AA]/20 flex items-center justify-center text-[#20B2AA] mx-auto mb-4">
+            <History className="w-8 h-8" />
+          </div>
+          <h3 className="text-xl font-display font-bold text-[#F9FBFB] mb-2">No past sessions found</h3>
+          <p className="text-xs text-[#8EA3A0] max-w-sm mx-auto mb-6 leading-relaxed">
+            You haven't completed any mock interviews yet. Launch your first session to build confidence and generate actionable analytics.
           </p>
           <Link
             to="/mock-interview"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/25 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#20B2AA] hover:bg-[#3FD1C7] text-[#0D1614] text-xs font-bold shadow-lg shadow-[#20B2AA]/20 transition-all hover:-translate-y-0.5"
           >
             <PlayCircle className="w-4 h-4" />
-            <span>Start Your First Mock Interview</span>
+            <span>Launch Your First Mock Interview</span>
           </Link>
         </div>
       )}

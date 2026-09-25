@@ -8,12 +8,12 @@ export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory 
         onClick={() => onSelectCategory('all')}
         className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
           selectedCategory === 'all' || !selectedCategory
-            ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
-            : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+            ? 'bg-[#20B2AA] text-[#0D1614] shadow-md shadow-[#20B2AA]/20'
+            : 'bg-charcoal-850 border border-[#20B2AA]/15 text-charcoal-400 hover:text-white hover:border-[#20B2AA]/30'
         }`}
       >
         <Layers className="w-3.5 h-3.5" />
-        <span>All Categories</span>
+        <span>All Domains</span>
       </button>
 
       {categories.map((cat) => {
@@ -24,8 +24,8 @@ export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory 
             onClick={() => onSelectCategory(cat._id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
               isSelected
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
-                : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                ? 'bg-[#20B2AA] text-[#0D1614] shadow-md shadow-[#20B2AA]/20'
+                : 'bg-charcoal-850 border border-[#20B2AA]/15 text-charcoal-400 hover:text-white hover:border-[#20B2AA]/30'
             }`}
           >
             <span>{cat.name}</span>
@@ -33,8 +33,8 @@ export const CategoryFilter = ({ categories, selectedCategory, onSelectCategory 
               <span
                 className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
                   isSelected
-                    ? 'bg-white/20 text-white'
-                    : 'bg-slate-800 text-slate-400'
+                    ? 'bg-[#0D1614]/25 text-[#0D1614]'
+                    : 'bg-charcoal-800 text-charcoal-400 border border-[#20B2AA]/10'
                 }`}
               >
                 {cat.questionCount}

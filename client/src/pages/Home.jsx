@@ -21,7 +21,7 @@ import api from '../api/axios';
 export const Home = () => {
   const [categories, setCategories] = useState([]);
   const [stats, setStats] = useState({
-    totalQuestions: 25,
+    totalQuestions: 30,
     categoriesCount: 5,
   });
 
@@ -44,158 +44,158 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+    <div className="relative overflow-hidden bg-[#0D1614]">
+      {/* Subtle Sea-Green Ambient Lighting */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 w-[650px] h-[380px] bg-gradient-to-tr from-[#20B2AA]/18 via-[#0E6E68]/12 to-transparent blur-[140px] rounded-full pointer-events-none -z-10" />
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 text-center">
-        {/* Release / Feature Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
-          <Bot className="w-3.5 h-3.5 text-purple-400 animate-pulse" />
-          <span>New: Real-time Voice AI Mentor & Virtual Interview Simulator</span>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28 text-center">
+        {/* Release / Feature Pill */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#20B2AA]/10 border border-[#20B2AA]/30 text-[#3FD1C7] text-xs font-semibold mb-8 animate-in fade-in slide-in-from-top-4 duration-500 shadow-sm">
+          <Bot className="w-3.5 h-3.5 text-[#20B2AA]" />
+          <span>Intelligent AI Voice Mentor & Virtual Interviewer</span>
         </div>
 
-        {/* Main Title */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.1] mb-6">
+        {/* Main Editorial Headline */}
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-medium tracking-tight text-charcoal-50 max-w-4xl mx-auto leading-[1.12] mb-6">
           Master Your Next Tech Interview with{' '}
-          <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#20B2AA] via-[#3FD1C7] to-[#17847E] bg-clip-text text-transparent italic font-normal">
             PrepMate
           </span>
         </h1>
 
-        <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Level up your confidence with an interactive Voice AI Mentor, simulated virtual interviews, curated problems from top tech giants, and personalized skill analytics.
+        <p className="text-base sm:text-lg text-charcoal-200 max-w-2xl mx-auto mb-12 leading-relaxed font-sans">
+          Build authentic confidence through interactive voice simulations, curated questions from leading tech giants, progressive AI hints, and personalized skill analytics.
         </p>
 
         {/* CTA Button Group */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto mb-20">
           <Link
             to="/ai-mentor"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-extrabold text-sm shadow-xl shadow-purple-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#20B2AA] to-[#3FD1C7] hover:from-[#3FD1C7] hover:to-[#20B2AA] text-[#0D1614] font-bold text-xs sm:text-sm shadow-xl shadow-[#20B2AA]/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
-            <Mic className="w-4 h-4 text-pink-200 animate-pulse" />
-            <span>Try AI Voice Mentor</span>
+            <Mic className="w-4 h-4 text-[#0D1614]" />
+            <span>Launch AI Voice Mentor</span>
           </Link>
 
           <Link
             to="/mock-interview"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-slate-900/90 hover:bg-slate-800 text-white border border-indigo-500/30 font-bold text-sm shadow-lg transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 text-charcoal-50 border border-[#20B2AA]/30 font-semibold text-xs sm:text-sm shadow-md transition-all hover:border-[#20B2AA]/50"
           >
-            <PlayCircle className="w-4 h-4 text-emerald-400" />
-            <span>Start Mock Session</span>
+            <PlayCircle className="w-4 h-4 text-[#20B2AA]" />
+            <span>Mock Interview</span>
           </Link>
 
           <Link
             to="/questions"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-900/60 hover:bg-slate-800 text-slate-300 border border-slate-800 font-semibold text-sm transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-charcoal-900/80 hover:bg-charcoal-850 text-charcoal-400 hover:text-white border border-[#20B2AA]/15 font-medium text-xs sm:text-sm transition-all"
           >
-            <BookOpen className="w-4 h-4 text-slate-400" />
+            <BookOpen className="w-4 h-4 text-[#20B2AA]" />
             <span>Question Bank</span>
           </Link>
         </div>
 
-        {/* Stat Highlights Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto p-6 rounded-3xl glass-panel border border-slate-800">
+        {/* Monochromatic Sea-Green Stat Bar */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto p-6 rounded-2xl glass-panel border border-[#20B2AA]/20 shadow-2xl">
           <div className="p-2 text-center">
-            <p className="text-2xl sm:text-3xl font-extrabold text-white">500+</p>
-            <p className="text-xs font-medium text-slate-400 mt-1">Curated Questions</p>
+            <p className="text-2xl sm:text-3xl font-display font-bold text-[#20B2AA]">500+</p>
+            <p className="text-xs font-medium text-charcoal-400 mt-1">Curated Questions</p>
           </div>
-          <div className="p-2 text-center border-l border-slate-800">
-            <p className="text-2xl sm:text-3xl font-extrabold text-indigo-400">5+</p>
-            <p className="text-xs font-medium text-slate-400 mt-1">Core Domains</p>
+          <div className="p-2 text-center border-l border-[#20B2AA]/15">
+            <p className="text-2xl sm:text-3xl font-display font-bold text-[#3FD1C7]">5+</p>
+            <p className="text-xs font-medium text-charcoal-400 mt-1">Core Tech Domains</p>
           </div>
-          <div className="p-2 text-center border-l border-slate-800">
-            <p className="text-2xl sm:text-3xl font-extrabold text-emerald-400">100%</p>
-            <p className="text-xs font-medium text-slate-400 mt-1">Interactive Simulations</p>
+          <div className="p-2 text-center border-l border-[#20B2AA]/15">
+            <p className="text-2xl sm:text-3xl font-display font-bold text-[#20B2AA]">100%</p>
+            <p className="text-xs font-medium text-charcoal-400 mt-1">Interactive Simulations</p>
           </div>
-          <div className="p-2 text-center border-l border-slate-800">
-            <p className="text-2xl sm:text-3xl font-extrabold text-purple-400">Instant</p>
-            <p className="text-xs font-medium text-slate-400 mt-1">Progress Tracking</p>
+          <div className="p-2 text-center border-l border-[#20B2AA]/15">
+            <p className="text-2xl sm:text-3xl font-display font-bold text-[#3FD1C7]">Instant</p>
+            <p className="text-xs font-medium text-charcoal-400 mt-1">Voice Feedback</p>
           </div>
         </div>
       </section>
 
-      {/* Feature Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/80">
+      {/* Feature Grid Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-[#20B2AA]/15">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-xs font-bold tracking-widest text-indigo-400 uppercase mb-2">
-            Why PrepMate?
+          <h2 className="text-xs font-bold tracking-widest text-[#20B2AA] uppercase mb-2 font-mono">
+            Platform Capabilities
           </h2>
-          <p className="text-3xl font-extrabold text-white">
-            Everything you need to crack FAANG & startup interviews
+          <p className="text-3xl font-display font-medium text-charcoal-50">
+            A comprehensive suite designed for top-tier interview readiness
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Feature 0 - Voice AI Mentor */}
-          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-purple-500/30 glass-card-hover space-y-4 bg-gradient-to-b from-purple-950/20 to-slate-900/40 relative overflow-hidden">
-            <div className="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300">
-              <Bot className="w-6 h-6 animate-pulse" />
+          {/* Feature 0 - AI Voice Mentor */}
+          <div className="glass-card rounded-2xl p-7 border border-[#20B2AA]/25 glass-card-hover space-y-4 relative overflow-hidden">
+            <div className="w-11 h-11 rounded-xl bg-[#20B2AA]/15 border border-[#20B2AA]/30 flex items-center justify-center text-[#20B2AA]">
+              <Bot className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
-              <span>Voice AI Mentor</span>
-              <span className="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                LIVE
+            <h3 className="text-lg font-display font-semibold text-white flex items-center gap-2">
+              <span>AI Voice Mentor</span>
+              <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-[#20B2AA]/20 text-[#3FD1C7] border border-[#20B2AA]/30 font-sans">
+                VOICE
               </span>
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Talk directly with AI Interviewer personas. Experience real speech synthesis, speech-to-text dictation, and instant verbal coaching feedback.
+            <p className="text-xs text-charcoal-400 leading-relaxed font-sans">
+              Engage in two-way spoken dialogues with AI interviewer personas. Practice verbalizing algorithmic complexity and receiving instant voice feedback.
             </p>
           </div>
 
           {/* Feature 1 */}
-          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 glass-card-hover space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-              <Zap className="w-6 h-6" />
+          <div className="glass-card rounded-2xl p-7 border border-[#20B2AA]/15 glass-card-hover space-y-4">
+            <div className="w-11 h-11 rounded-xl bg-[#20B2AA]/10 border border-[#20B2AA]/20 flex items-center justify-center text-[#20B2AA]">
+              <Zap className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-bold text-white">Dynamic Mock Sessions</h3>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Experience authentic interview pressure. Customize by choosing categories, difficulty tiers, and timed challenges.
+            <h3 className="text-lg font-display font-semibold text-white">Realistic Simulations</h3>
+            <p className="text-xs text-charcoal-400 leading-relaxed font-sans">
+              Timed mock interview workflows simulating real pressure. Choose domain topics, difficulty levels, and practice voice dictation.
             </p>
           </div>
 
           {/* Feature 2 */}
-          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 glass-card-hover space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-              <BarChart3 className="w-6 h-6" />
+          <div className="glass-card rounded-2xl p-7 border border-[#20B2AA]/15 glass-card-hover space-y-4">
+            <div className="w-11 h-11 rounded-xl bg-[#20B2AA]/10 border border-[#20B2AA]/20 flex items-center justify-center text-[#20B2AA]">
+              <BarChart3 className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-bold text-white">Confidence Scoring</h3>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Rate your confidence on every answer. Generate visual analytics to pinpoint strengths and key improvement areas.
+            <h3 className="text-lg font-display font-semibold text-white">Confidence Analytics</h3>
+            <p className="text-xs text-charcoal-400 leading-relaxed font-sans">
+              Rate your confidence on every question. Generate interactive visual charts to track your mastery across distributed systems and algorithms.
             </p>
           </div>
 
           {/* Feature 3 */}
-          <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-800 glass-card-hover space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-              <Bookmark className="w-6 h-6" />
+          <div className="glass-card rounded-2xl p-7 border border-[#20B2AA]/15 glass-card-hover space-y-4">
+            <div className="w-11 h-11 rounded-xl bg-[#20B2AA]/10 border border-[#20B2AA]/20 flex items-center justify-center text-[#20B2AA]">
+              <Bookmark className="w-5 h-5" />
             </div>
-            <h3 className="text-xl font-bold text-white">Bookmarks & Transcripts</h3>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Save challenging problems to your personal notebook. Review previous session transcripts and re-attempt anytime.
+            <h3 className="text-lg font-display font-semibold text-white">Curated Notebook</h3>
+            <p className="text-xs text-charcoal-400 leading-relaxed font-sans">
+              Bookmark critical problems, study full-text solution breakdowns, and review historical transcript notes prior to on-site rounds.
             </p>
           </div>
         </div>
       </section>
 
       {/* Category Showcase Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-slate-800/80">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-[#20B2AA]/15">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
-            <h2 className="text-xs font-bold tracking-widest text-indigo-400 uppercase mb-2">
-              Curated Syllabus
+            <h2 className="text-xs font-bold tracking-widest text-[#20B2AA] uppercase mb-2 font-mono">
+              Curated Curriculum
             </h2>
-            <p className="text-3xl font-extrabold text-white">
-              Explore Top Categories
+            <p className="text-3xl font-display font-medium text-charcoal-50">
+              Explore Interview Domains
             </p>
           </div>
           <Link
             to="/questions"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#20B2AA] hover:text-[#3FD1C7] transition-colors"
           >
             <span>View all questions</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
@@ -205,32 +205,32 @@ export const Home = () => {
               <Link
                 key={cat._id}
                 to={`/questions?category=${encodeURIComponent(cat.name)}`}
-                className="glass-card rounded-2xl p-6 border border-slate-800 glass-card-hover group flex flex-col justify-between"
+                className="glass-card rounded-2xl p-6 border border-[#20B2AA]/15 glass-card-hover group flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
+                    <h3 className="text-base font-display font-semibold text-white group-hover:text-[#3FD1C7] transition-colors">
                       {cat.name}
                     </h3>
-                    <span className="px-2 py-0.5 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#20B2AA]/15 text-[#3FD1C7] border border-[#20B2AA]/30">
                       {cat.questionCount || 0} questions
                     </span>
                   </div>
-                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">
+                  <p className="text-xs text-charcoal-400 line-clamp-2 leading-relaxed mb-4 font-sans">
                     {cat.description || 'Comprehensive questions covering practical scenarios, principles, and edge cases.'}
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 group-hover:translate-x-1 transition-transform">
-                  <span>Practice category</span>
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-[#20B2AA] group-hover:translate-x-1 transition-transform">
+                  <span>Explore domain</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </Link>
             ))
           ) : (
-            <div className="col-span-3 text-center p-12 glass-card rounded-2xl border border-slate-800">
-              <BookOpen className="w-10 h-10 text-indigo-400 mx-auto mb-3" />
-              <p className="text-slate-300 font-semibold">Explore our question bank</p>
-              <p className="text-xs text-slate-500 mt-1">Hundreds of curated problems waiting for you.</p>
+            <div className="col-span-3 text-center p-12 glass-card rounded-2xl border border-[#20B2AA]/15">
+              <BookOpen className="w-10 h-10 text-[#20B2AA] mx-auto mb-3" />
+              <p className="text-charcoal-100 font-semibold text-sm">Explore our curated question bank</p>
+              <p className="text-xs text-charcoal-400 mt-1">Hundreds of curated technical problems ready to practice.</p>
             </div>
           )}
         </div>
@@ -238,18 +238,18 @@ export const Home = () => {
 
       {/* Call to Action Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="relative rounded-3xl overflow-hidden p-8 sm:p-14 bg-gradient-to-r from-indigo-950 via-purple-950 to-slate-900 border border-indigo-500/30 text-center shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden p-8 sm:p-14 bg-gradient-to-br from-charcoal-850 via-charcoal-900 to-[#081A18] border border-[#20B2AA]/25 text-center shadow-2xl">
           <div className="max-w-2xl mx-auto space-y-6">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Ready to land your dream offer?
+            <h2 className="text-3xl sm:text-4xl font-display font-medium text-white tracking-tight">
+              Ready to accelerate your technical interview readiness?
             </h2>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Start practicing with our interactive mock interview sessions today. Join engineers preparing for top tech roles.
+            <p className="text-charcoal-200 text-xs sm:text-sm leading-relaxed">
+              Start practicing with our interactive mock interview sessions and AI voice mentor today. Join engineers preparing for top tech roles.
             </p>
             <div className="pt-2">
               <Link
                 to="/register"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-xl shadow-indigo-600/40 transition-all hover:scale-105"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#20B2AA] to-[#3FD1C7] text-[#0D1614] font-bold text-xs sm:text-sm shadow-xl shadow-[#20B2AA]/25 transition-all hover:scale-105"
               >
                 <span>Create Free Account</span>
                 <ArrowRight className="w-4 h-4" />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, Filter, BookOpen, Layers, X, Sparkles, Building2 } from 'lucide-react';
+import { Search, BookOpen, X, Building2 } from 'lucide-react';
 import api from '../api/axios';
 import QuestionCard from '../components/QuestionCard';
 import CategoryFilter from '../components/CategoryFilter';
@@ -136,20 +136,20 @@ export const QuestionBank = () => {
       <div className="mb-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight flex items-center gap-2.5">
-              <BookOpen className="w-7 h-7 text-indigo-400" />
+            <h1 className="text-3xl font-display font-medium text-white tracking-tight flex items-center gap-2.5">
+              <BookOpen className="w-7 h-7 text-[#20B2AA]" />
               <span>Question Bank</span>
             </h1>
-            <p className="text-sm text-slate-400 mt-1">
-              Explore comprehensive interview questions curated across top engineering categories
+            <p className="text-xs sm:text-sm text-charcoal-400 mt-1">
+              Explore comprehensive interview questions curated across top engineering domains
             </p>
           </div>
           {hasActiveFilters && (
             <button
               onClick={handleClearFilters}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold self-start sm:self-center transition-all"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-charcoal-850 hover:bg-charcoal-800 text-charcoal-200 border border-[#20B2AA]/20 text-xs font-semibold self-start sm:self-center transition-all"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-3.5 h-3.5 text-[#20B2AA]" />
               <span>Reset Filters</span>
             </button>
           )}
@@ -157,12 +157,12 @@ export const QuestionBank = () => {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="glass-card rounded-2xl p-4 sm:p-5 border border-slate-800 mb-8 space-y-4">
+      <div className="glass-card rounded-2xl p-4 sm:p-5 border border-[#20B2AA]/15 mb-8 space-y-4">
         {/* Search Inputs */}
         <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 md:grid-cols-12 gap-3">
           {/* Keyword Search */}
           <div className="md:col-span-6 relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-charcoal-400">
               <Search className="w-4 h-4" />
             </div>
             <input
@@ -170,13 +170,13 @@ export const QuestionBank = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search by keyword, concept, or tag..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-charcoal-900 border border-[#20B2AA]/20 text-white placeholder-charcoal-400 text-xs focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA]"
             />
           </div>
 
           {/* Company Search */}
           <div className="md:col-span-3 relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-charcoal-400">
               <Building2 className="w-4 h-4" />
             </div>
             <input
@@ -184,7 +184,7 @@ export const QuestionBank = () => {
               value={companyInput}
               onChange={(e) => setCompanyInput(e.target.value)}
               placeholder="Company (e.g. Google, Meta)"
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-charcoal-900 border border-[#20B2AA]/20 text-white placeholder-charcoal-400 text-xs focus:outline-none focus:border-[#20B2AA] focus:ring-1 focus:ring-[#20B2AA]"
             />
           </div>
 
@@ -193,7 +193,7 @@ export const QuestionBank = () => {
             <select
               value={selectedDifficulty}
               onChange={(e) => updateParams({ difficulty: e.target.value })}
-              className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 text-xs font-medium focus:outline-none focus:border-indigo-500"
+              className="w-full px-3 py-2.5 rounded-xl bg-charcoal-900 border border-[#20B2AA]/20 text-charcoal-200 text-xs font-medium focus:outline-none focus:border-[#20B2AA]"
             >
               <option value="all">All Difficulties</option>
               <option value="Easy">Easy</option>
@@ -206,7 +206,7 @@ export const QuestionBank = () => {
           <div className="md:col-span-1">
             <button
               type="submit"
-              className="w-full h-full min-h-[38px] flex items-center justify-center rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all shadow-md shadow-indigo-600/20"
+              className="w-full h-full min-h-[38px] flex items-center justify-center rounded-xl bg-gradient-to-r from-[#20B2AA] to-[#3FD1C7] text-[#0D1614] font-bold text-xs transition-all shadow-md shadow-[#20B2AA]/20 hover:scale-[1.02]"
             >
               Search
             </button>
@@ -215,7 +215,7 @@ export const QuestionBank = () => {
 
         {/* Category Pills */}
         {!categoriesLoading && (
-          <div className="pt-3 border-t border-slate-800/80">
+          <div className="pt-3 border-t border-[#20B2AA]/15">
             <CategoryFilter
               categories={categories}
               selectedCategory={selectedCategory}
@@ -246,15 +246,15 @@ export const QuestionBank = () => {
           />
         </div>
       ) : (
-        <div className="glass-card rounded-2xl p-12 text-center border border-slate-800">
-          <BookOpen className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <h3 className="text-base font-bold text-white mb-1">No questions found</h3>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto mb-4">
-            Try adjusting your search keywords, difficulty filter, or category selection.
+        <div className="glass-card rounded-2xl p-12 text-center border border-[#20B2AA]/15">
+          <BookOpen className="w-12 h-12 text-[#20B2AA]/40 mx-auto mb-3" />
+          <h3 className="text-base font-display font-semibold text-white mb-1">No questions found</h3>
+          <p className="text-xs text-charcoal-400 max-w-sm mx-auto mb-4">
+            Try adjusting your search keywords, difficulty filter, or domain selection.
           </p>
           <button
             onClick={handleClearFilters}
-            className="px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-semibold"
+            className="px-4 py-2 rounded-xl bg-[#20B2AA]/15 hover:bg-[#20B2AA]/25 text-[#3FD1C7] border border-[#20B2AA]/30 text-xs font-semibold"
           >
             Clear All Filters
           </button>

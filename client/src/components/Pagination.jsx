@@ -23,8 +23,8 @@ export const Pagination = ({ pagination, onPageChange }) => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-slate-800">
-      <p className="text-xs text-slate-400">
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#20B2AA]/15">
+      <p className="text-xs text-charcoal-400">
         Showing <span className="font-semibold text-white">{(page - 1) * limit + 1}</span> to{' '}
         <span className="font-semibold text-white">{Math.min(page * limit, total)}</span> of{' '}
         <span className="font-semibold text-white">{total}</span> questions
@@ -35,7 +35,7 @@ export const Pagination = ({ pagination, onPageChange }) => {
         <button
           onClick={() => onPageChange(page - 1)}
           disabled={page <= 1}
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="p-2 rounded-xl bg-charcoal-850 border border-[#20B2AA]/15 text-charcoal-400 hover:text-white hover:bg-charcoal-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -47,8 +47,8 @@ export const Pagination = ({ pagination, onPageChange }) => {
             onClick={() => onPageChange(num)}
             className={`w-9 h-9 rounded-xl text-xs font-semibold transition-all ${
               page === num
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
-                : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                ? 'bg-[#20B2AA] text-[#0D1614] shadow-md shadow-[#20B2AA]/20 font-bold'
+                : 'bg-charcoal-850 border border-[#20B2AA]/15 text-charcoal-400 hover:text-white hover:bg-charcoal-800'
             }`}
           >
             {num}
@@ -59,7 +59,7 @@ export const Pagination = ({ pagination, onPageChange }) => {
         <button
           onClick={() => onPageChange(page + 1)}
           disabled={page >= totalPages}
-          className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          className="p-2 rounded-xl bg-charcoal-850 border border-[#20B2AA]/15 text-charcoal-400 hover:text-white hover:bg-charcoal-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <ChevronRight className="w-4 h-4" />
         </button>

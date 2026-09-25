@@ -1,52 +1,58 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BrainCircuit, Heart, Shield, Code, Sparkles } from 'lucide-react';
+import { BrainCircuit, Heart, Sparkles, Bot } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="border-t border-slate-800/80 bg-slate-950/90 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="border-t border-[#20B2AA]/15 bg-[#0D1614] mt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-4">
             <Link to="/" className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
-                <BrainCircuit className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#20B2AA] to-[#0E6E68] flex items-center justify-center shadow-md shadow-[#20B2AA]/15">
+                <BrainCircuit className="w-4 h-4 text-[#0D1614]" />
               </div>
-              <span className="text-xl font-bold text-white tracking-tight">PrepMate</span>
+              <span className="text-xl font-bold font-display text-white tracking-tight">PrepMate</span>
             </Link>
-            <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
-              Empowering developers and engineers to master technical interviews through realistic mock sessions, curated question banks, and actionable feedback.
+            <p className="text-xs sm:text-sm text-charcoal-400 max-w-sm leading-relaxed">
+              Empowering students and software engineers to master technical interviews through realistic mock sessions, AI voice mentorship, and personalized progress metrics.
             </p>
-            <div className="flex items-center gap-2 text-xs text-indigo-400">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Full-Stack MERN Architecture</span>
+            <div className="flex items-center gap-2 text-xs text-[#20B2AA]">
+              <Bot className="w-3.5 h-3.5" />
+              <span>Interactive AI Voice Mentor Enabled</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-charcoal-50 mb-4 font-display">
               Platform
             </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400">
+            <ul className="space-y-2.5 text-xs text-charcoal-400">
               <li>
-                <Link to="/questions" className="hover:text-indigo-400 transition-colors">
+                <Link to="/ai-mentor" className="hover:text-[#3FD1C7] transition-colors flex items-center gap-1.5">
+                  <span>AI Voice Mentor</span>
+                  <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-[#20B2AA]/20 text-[#3FD1C7]">NEW</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/questions" className="hover:text-[#3FD1C7] transition-colors">
                   Question Bank
                 </Link>
               </li>
               <li>
-                <Link to="/mock-interview" className="hover:text-indigo-400 transition-colors">
-                  Mock Interview Session
+                <Link to="/mock-interview" className="hover:text-[#3FD1C7] transition-colors">
+                  Mock Interview Simulator
                 </Link>
               </li>
               <li>
-                <Link to="/bookmarks" className="hover:text-indigo-400 transition-colors">
+                <Link to="/bookmarks" className="hover:text-[#3FD1C7] transition-colors">
                   Saved Bookmarks
                 </Link>
               </li>
               <li>
-                <Link to="/dashboard" className="hover:text-indigo-400 transition-colors">
+                <Link to="/dashboard" className="hover:text-[#3FD1C7] transition-colors">
                   Progress Analytics
                 </Link>
               </li>
@@ -55,28 +61,33 @@ export const Footer = () => {
 
           {/* Resources */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-300 mb-4">
-              Categories
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-charcoal-50 mb-4 font-display">
+              Curated Domains
             </h4>
-            <ul className="space-y-2.5 text-sm text-slate-400">
+            <ul className="space-y-2.5 text-xs text-charcoal-400">
               <li>
-                <Link to="/questions?category=Data+Structures+%26+Algorithms" className="hover:text-indigo-400 transition-colors">
+                <Link to="/questions?category=Data+Structures+%26+Algorithms" className="hover:text-[#3FD1C7] transition-colors">
                   Data Structures & Algorithms
                 </Link>
               </li>
               <li>
-                <Link to="/questions?category=System+Design" className="hover:text-indigo-400 transition-colors">
-                  System Design
+                <Link to="/questions?category=System+Design" className="hover:text-[#3FD1C7] transition-colors">
+                  System Design & Scale
                 </Link>
               </li>
               <li>
-                <Link to="/questions?category=Frontend+Engineering" className="hover:text-indigo-400 transition-colors">
+                <Link to="/questions?category=Frontend+Engineering" className="hover:text-[#3FD1C7] transition-colors">
                   Frontend Engineering
                 </Link>
               </li>
               <li>
-                <Link to="/questions?category=Behavioral+%26+Leadership" className="hover:text-indigo-400 transition-colors">
-                  Behavioral & Leadership
+                <Link to="/questions?category=Backend+%26+Databases" className="hover:text-[#3FD1C7] transition-colors">
+                  Backend & Databases
+                </Link>
+              </li>
+              <li>
+                <Link to="/questions?category=Behavioral+%26+Leadership" className="hover:text-[#3FD1C7] transition-colors">
+                  Behavioral & STAR Leadership
                 </Link>
               </li>
             </ul>
@@ -84,11 +95,10 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-8 border-t border-[#20B2AA]/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-charcoal-400">
           <p>© {new Date().getFullYear()} PrepMate. Built for high-performance job interview preparation.</p>
-          <div className="flex items-center gap-1">
-            <span>Crafted for developers with</span>
-            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 mx-1" />
+          <div className="flex items-center gap-1 text-[#20B2AA]">
+            <span>Designed for ambitious engineers</span>
           </div>
         </div>
       </div>

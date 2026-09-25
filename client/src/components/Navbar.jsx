@@ -46,21 +46,13 @@ export const Navbar = () => {
     }`;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#20B2AA]/15 bg-[#0D1614]/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-[#20B2AA]/15 bg-[#071412]/90 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#20B2AA] to-[#0E6E68] flex items-center justify-center shadow-md shadow-[#20B2AA]/20 group-hover:scale-105 transition-transform">
-              <BrainCircuit className="w-5 h-5 text-[#0D1614]" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold bg-gradient-to-r from-[#F9FBFB] via-[#20B2AA] to-[#3FD1C7] bg-clip-text text-transparent font-display tracking-tight">
-                PrepMate
-              </span>
-              <span className="text-[9px] font-semibold text-[#20B2AA] uppercase tracking-widest -mt-1 font-mono">
-                Interview Prep
-              </span>
+          <Link to="/" className="flex items-center group" title="PrepMate Home">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#20B2AA] to-[#0E6E68] flex items-center justify-center shadow-lg shadow-[#20B2AA]/25 group-hover:scale-105 transition-transform">
+              <BrainCircuit className="w-5 h-5 text-[#071412]" />
             </div>
           </Link>
 
